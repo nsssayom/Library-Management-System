@@ -5,16 +5,16 @@ import java.sql.*;
 import java.awt.*;
 
 public class LibraryLogin extends JFrame implements ActionListener{
-	JLabel signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2,imgLabel1;
+	JLabel signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2;
 	JTextField  nameTF, emailTF;
 	JPasswordField  passPF2;
 	JButton btnLogin, btnExit, btnSignUp;
-	//private JCheckBox checkBox1;
-	private ImageIcon img;
+
 	JPanel MainPanel;
 	TopPanelLogin topPanelLogin;
+	LeftPanel leftPanel;
 
-	  Font f4= new Font("Cambria",Font.BOLD, 17);
+	Font f4= new Font("Cambria",Font.BOLD, 17);
 
 	public LibraryLogin(){
 		super("Login Window");
@@ -28,6 +28,7 @@ public class LibraryLogin extends JFrame implements ActionListener{
 		MainPanel.setLayout(null);
 
 		topPanelLogin = new TopPanelLogin();
+		leftPanel= new LeftPanel();
 
 		signLabel = new JLabel("New here? Create a free account");
 		signLabel.setBounds(925, 200, 400, 30);
@@ -79,12 +80,11 @@ public class LibraryLogin extends JFrame implements ActionListener{
 		btnExit.addActionListener(this);
 		MainPanel.add(btnExit);
 
-		img = new ImageIcon("pic1.jpg");
-		imgLabel1 = new JLabel(img);
-		imgLabel1.setBounds(-310, 100, 1280, 600);
-		MainPanel.add(imgLabel1);
-
 		MainPanel.add(topPanelLogin);
+		this.add(MainPanel);
+		this.setResizable(false);
+
+		MainPanel.add(leftPanel);
 		this.add(MainPanel);
 		this.setResizable(false);
 	}
