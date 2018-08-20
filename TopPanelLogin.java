@@ -75,7 +75,7 @@ public class TopPanelLogin extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent ae){
       //this is test
-      colorLabel.setOpaque(false);
+      //this is test 2
     }
 
 }
