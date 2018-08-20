@@ -19,7 +19,6 @@ public class LeftPanelLogin extends JPanel implements ActionListener{
         imgLabel1 = new JLabel(img);
         imgLabel1.setBounds(0, 0, 900, 800);
         add(imgLabel1);
-
       }
 
         public void actionPerformed(ActionEvent ae){}
