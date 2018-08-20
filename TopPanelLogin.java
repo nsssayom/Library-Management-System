@@ -73,9 +73,6 @@ public class TopPanelLogin extends JPanel implements ActionListener{
         add(colorLabel);
     }
 
-    public void actionPerformed(ActionEvent ae){
-      //this is test
-      //this is test 2
-    }
+    public void actionPerformed(ActionEvent ae){}
 
 }
