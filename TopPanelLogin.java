@@ -11,16 +11,15 @@ public class TopPanelLogin extends JPanel implements ActionListener{
     JPasswordField passPF1;
     JButton btnLogin,  btnForgetPassword;
     JCheckBox checkBox1;
-    //ImageIcon img;
-    Font f1 = new Font("Cambria",Font.BOLD, 26);
-    Font f2 = new Font("Cambria",Font.BOLD, 20);
-    Font f3 = new Font("Cambria",Font.BOLD, 15);
-
 
     public TopPanelLogin(){
         super();
         setBounds(0, 0, 1280, 100);
         setLayout(null);
+
+        Font f1 = new Font("Cambria",Font.BOLD, 26);
+        Font f2 = new Font("Cambria",Font.BOLD, 20);
+        Font f3 = new Font("Cambria",Font.BOLD, 15);
 
         title = new JLabel("Welcome to AIUB Library System");
         title.setForeground(Color.WHITE);
