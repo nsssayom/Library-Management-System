@@ -1,0 +1,154 @@
+import java.lang.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.awt.*;
+
+public class LibraryLogin extends JFrame implements ActionListener
+{
+	private JLabel title, title1,colorLabel, userLabel, passLabel, signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2,imgLabel1;
+	private JTextField userTF, nameTF, emailTF;
+	private JPasswordField passPF1, passPF2;
+	private JButton btnLogin, btnExit, btnForgetPassword, btnSignUp;
+	private JCheckBox checkBox1;
+	private ImageIcon img;
+	private JPanel MainPanel;
+	
+	public LibraryLogin()
+	{
+		super("Login Window");
+		
+		this.setSize(1280, 730);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Font f1 = new Font("Cambria",Font.BOLD, 26);
+		Font f2 = new Font("Cambria",Font.BOLD, 20);
+		MainPanel = new JPanel();
+		MainPanel.setLayout(null);
+		
+		title = new JLabel("Welcome to AIUB Library System");
+		title.setForeground(Color.WHITE);
+		title.setBounds(50, 20, 450, 30);
+		title.setFont(f1);
+		MainPanel.add(title);
+		
+		title1 = new JLabel("Dive into the ocean of knowledge");
+		title1.setBounds(50, 50, 450, 30);
+		title1.setForeground(Color.WHITE);
+		title1.setFont(f2);
+		MainPanel.add(title1);
+		
+		userLabel = new JLabel("User Name");
+		userLabel.setForeground(Color.WHITE);
+		userLabel.setBounds(770, 25, 100, 30);
+		MainPanel.add(userLabel);
+		
+		userTF = new JTextField();
+		userTF.setBounds(850, 25, 100, 30);
+		MainPanel.add(userTF);
+		
+		passLabel = new JLabel("Password");
+		passLabel.setBounds(970, 25, 100, 30);
+		passLabel.setForeground(Color.WHITE);
+		MainPanel.add(passLabel);
+		
+		passPF1 = new JPasswordField();
+		passPF1.setBounds(1045,25,100,30);
+		MainPanel.add(passPF1);
+		
+		btnLogin = new JButton("Login");
+		btnLogin.setBounds(1165, 25, 70, 30);
+		btnLogin.addActionListener(this);
+		MainPanel.add(btnLogin);
+		
+		btnForgetPassword = new JButton("forget password?");
+		btnForgetPassword.setBounds(1045, 65, 190, 20);
+		btnForgetPassword.addActionListener(this);
+		MainPanel.add(btnForgetPassword);
+		
+		checkBox1= new JCheckBox("Remember me");
+		checkBox1.setOpaque(false);
+		checkBox1.setBounds(850, 65, 175, 20);
+		checkBox1.addActionListener(this);
+		MainPanel.add(checkBox1);
+		
+		signLabel = new JLabel("New here? Create a free account");
+		signLabel.setBounds(925, 200, 400, 30);
+		signLabel.setFont(f2);
+		signLabel.setOpaque(true);
+		MainPanel.add(signLabel);
+		
+		nameLabel = new JLabel("Name:");
+		nameLabel.setBounds(925, 280, 50, 30);
+		MainPanel.add(nameLabel);
+		
+		emailLabel = new JLabel("E-mail:");
+		emailLabel.setBounds(925, 320, 50, 30);
+		MainPanel.add(emailLabel);
+		
+		passwordLabel = new JLabel("Password:");
+		passwordLabel.setBounds(925, 360, 100, 30);
+		MainPanel.add(passwordLabel);
+		
+		nameTF = new JTextField();
+		nameTF.setBounds(1005, 280, 170, 30);
+		MainPanel.add(nameTF);
+		
+		emailTF = new JTextField();
+		emailTF.setBounds(1005, 320, 170, 30);
+		MainPanel.add(emailTF);
+		
+		passPF2 = new JPasswordField();
+		passPF2.setBounds(1005,360,170,30);
+		MainPanel.add(passPF2);
+		
+		btnSignUp = new JButton("Sign up");
+		btnSignUp.setBounds(925, 430, 90, 30);
+		btnSignUp.addActionListener(this);
+		MainPanel.add(btnSignUp);
+		
+	    termLabel = new JLabel("By clicking this I am accepting ");
+		termLabel.setBounds(1020, 420, 300, 30);
+		MainPanel.add(termLabel);
+		termLabel2 = new JLabel("all the terms and conditions");
+		termLabel2.setBounds(1020, 440, 300, 30);
+		MainPanel.add(termLabel2);
+		
+		btnExit = new JButton("Exit");
+		btnExit.setBounds(1165, 630, 70, 30);
+		btnExit.addActionListener(this);
+		MainPanel.add(btnExit);
+		
+		img = new ImageIcon("pic1.jpg");
+		imgLabel1 = new JLabel(img);
+		imgLabel1.setBounds(-310, 100, 1280, 600);
+		MainPanel.add(imgLabel1);
+		
+		colorLabel = new JLabel();
+		colorLabel.setBounds(0, 0, 1280, 100);
+        colorLabel.setBackground(new Color(127,86,68));
+		colorLabel.setOpaque(true);
+		
+		MainPanel.add(colorLabel);
+		
+		this.add(MainPanel);
+		this.setResizable(false);
+	}
+
+/*public void mousePressed(MouseEvent me){}
+	public void mouseReleased(MouseEvent me){}
+	public void mouseEntered(MouseEvent me){}
+	public void mouseExited(MouseEvent me){}*/
+
+public void actionPerformed(ActionEvent ae)
+	{
+		String str = ae.getActionCommand();
+		if(str.equals(btnLogin.getText()))
+		{}
+		else if(str.equals(btnExit.getText()))
+		{
+			System.exit(0);
+		}
+		else{}
+	}
+	}
