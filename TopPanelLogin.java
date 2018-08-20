@@ -9,11 +9,7 @@ public class TopPanelLogin extends JPanel implements ActionListener{
     JLabel title, title1,colorLabel, userLabel, passLabel;
     JTextField userTF;
     JPasswordField passPF1;
-<<<<<<< HEAD
     JButton btnLogin,  btnForgetPassword;
-=======
-    JButton btnLogin, btnForgetPassword;
->>>>>>> 527190a9c6930eb8f0ae429c118a6aad25a550ee
     JCheckBox checkBox1;
     //ImageIcon img;
     Font f1 = new Font("Cambria",Font.BOLD, 26);
