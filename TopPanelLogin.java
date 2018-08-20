@@ -6,12 +6,12 @@ import java.awt.*;
 
 public class TopPanelLogin extends JPanel implements ActionListener{
 
-    JLabel title, title1,colorLabel, userLabel, passLabel, signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2,imgLabel1;
-    JTextField userTF, nameTF, emailTF;
-    JPasswordField passPF1, passPF2;
-    JButton btnLogin, btnExit, btnForgetPassword, btnSignUp;
+    JLabel title, title1,colorLabel, userLabel, passLabel;
+    JTextField userTF;
+    JPasswordField passPF1;
+    JButton btnLogin,  btnForgetPassword;
     JCheckBox checkBox1;
-    ImageIcon img;
+    //ImageIcon img;
     Font f1 = new Font("Cambria",Font.BOLD, 26);
     Font f2 = new Font("Cambria",Font.BOLD, 20);
 

@@ -6,11 +6,11 @@ import java.awt.*;
 
 public class LibraryLogin extends JFrame implements ActionListener
 {
-	JLabel title, title1,colorLabel, userLabel, passLabel, signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2,imgLabel1;
-	JTextField userTF, nameTF, emailTF;
-	JPasswordField passPF1, passPF2;
-	JButton btnLogin, btnExit, btnForgetPassword, btnSignUp;
-	private JCheckBox checkBox1;
+	JLabel signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2,imgLabel1;
+	JTextField  nameTF, emailTF;
+	JPasswordField  passPF2;
+	JButton btnLogin, btnExit, btnSignUp;
+	//private JCheckBox checkBox1;
 	private ImageIcon img;
 	JPanel MainPanel;
 	TopPanelLogin topPanelLogin;
