@@ -14,6 +14,8 @@ public class LibraryLogin extends JFrame implements ActionListener{
 	JPanel MainPanel;
 	TopPanelLogin topPanelLogin;
 
+	  Font f4= new Font("Cambria",Font.BOLD, 17);
+
 	public LibraryLogin(){
 		super("Login Window");
 
@@ -34,39 +36,42 @@ public class LibraryLogin extends JFrame implements ActionListener{
 		MainPanel.add(signLabel);
 
 		nameLabel = new JLabel("Name:");
-		nameLabel.setBounds(925, 280, 50, 30);
+		nameLabel.setBounds(930, 280, 50, 30);
+		nameLabel.setFont(f4);
 		MainPanel.add(nameLabel);
 
 		emailLabel = new JLabel("E-mail:");
-		emailLabel.setBounds(925, 320, 50, 30);
+		emailLabel.setBounds(930, 320, 80, 30);
+	  emailLabel.setFont(f4);
 		MainPanel.add(emailLabel);
 
 		passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(925, 360, 100, 30);
+		passwordLabel.setBounds(930, 360, 100, 30);
+		passwordLabel.setFont(f4);
 		MainPanel.add(passwordLabel);
 
 		nameTF = new JTextField();
-		nameTF.setBounds(1005, 280, 170, 30);
+		nameTF.setBounds(1025, 280, 170, 30);
 		MainPanel.add(nameTF);
 
 		emailTF = new JTextField();
-		emailTF.setBounds(1005, 320, 170, 30);
+		emailTF.setBounds(1025, 320, 170, 30);
 		MainPanel.add(emailTF);
 
 		passPF2 = new JPasswordField();
-		passPF2.setBounds(1005,360,170,30);
+		passPF2.setBounds(1025,360,170,30);
 		MainPanel.add(passPF2);
 
 		btnSignUp = new JButton("Sign up");
-		btnSignUp.setBounds(925, 430, 90, 30);
+		btnSignUp.setBounds(930, 440, 90, 33);
 		btnSignUp.addActionListener(this);
 		MainPanel.add(btnSignUp);
 
 	    termLabel = new JLabel("By clicking this I am accepting ");
-		termLabel.setBounds(1020, 420, 300, 30);
+		termLabel.setBounds(1025, 430, 300, 30);
 		MainPanel.add(termLabel);
 		termLabel2 = new JLabel("all the terms and conditions");
-		termLabel2.setBounds(1020, 440, 300, 30);
+		termLabel2.setBounds(1025, 450, 300, 30);
 		MainPanel.add(termLabel2);
 
 		btnExit = new JButton("Exit");
