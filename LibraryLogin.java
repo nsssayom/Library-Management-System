@@ -12,7 +12,7 @@ public class LibraryLogin extends JFrame implements ActionListener{
 
 	JPanel MainPanel;
 	TopPanelLogin topPanelLogin;
-	LeftPanel leftPanel;
+	LeftPanelLogin leftPanel;
 
 	Font f4= new Font("Cambria",Font.BOLD, 17);
 
@@ -28,7 +28,7 @@ public class LibraryLogin extends JFrame implements ActionListener{
 		MainPanel.setLayout(null);
 
 		topPanelLogin = new TopPanelLogin();
-		leftPanel= new LeftPanel();
+		leftPanel= new LeftPanelLogin();
 
 		signLabel = new JLabel("New here? Create a free account");
 		signLabel.setBounds(925, 200, 400, 30);

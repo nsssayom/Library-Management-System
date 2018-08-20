@@ -4,12 +4,12 @@ import java.awt.event.*;
 import java.sql.*;
 import java.awt.*;
 
-public class LeftPanel extends JPanel implements ActionListener{
+public class LeftPanelLogin extends JPanel implements ActionListener{
 
     JLabel imgLabel1;
     ImageIcon img;
 
-    public LeftPanel(){
+    public LeftPanelLogin(){
 
         super();
         setBounds(0, 0 , 900, 800);
