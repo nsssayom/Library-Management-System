@@ -7,11 +7,11 @@ import java.awt.*;
 public class TopPanelLogin extends JPanel implements ActionListener{
 
     JLabel title, title1,colorLabel, userLabel, passLabel, signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2,imgLabel1;
-	JTextField userTF, nameTF, emailTF;
-	JPasswordField passPF1, passPF2;
-	JButton btnLogin, btnExit, btnForgetPassword, btnSignUp;
-	JCheckBox checkBox1;
-	ImageIcon img;
+    JTextField userTF, nameTF, emailTF;
+    JPasswordField passPF1, passPF2;
+    JButton btnLogin, btnExit, btnForgetPassword, btnSignUp;
+    JCheckBox checkBox1;
+    ImageIcon img;
     Font f1 = new Font("Cambria",Font.BOLD, 26);
     Font f2 = new Font("Cambria",Font.BOLD, 20);
 
@@ -69,9 +69,13 @@ public class TopPanelLogin extends JPanel implements ActionListener{
         colorLabel = new JLabel();
 		    colorLabel.setBounds(0, 0, 1280, 100);
         colorLabel.setBackground(new Color(127,86,68));
-		    colorLabel.setOpaque(true);	
+		    colorLabel.setOpaque(true);
         add(colorLabel);
     }
 
-    public void actionPerformed(ActionEvent ae){}
+    public void actionPerformed(ActionEvent ae){
+      //this is test
+      colorLabel.setOpaque(false);
+    }
+
 }
