@@ -6,21 +6,15 @@ import java.awt.*;
 
 public class LeftPanel extends JPanel implements ActionListener{
 
-    JLabel imgLabel1;
-    ImageIcon img;
+  //JLabel ;
 
-    public LeftPanel(){
+  public LeftPanel(){
 
-        super();
-        setBounds(0, 0 , 900, 800);
-        setLayout(null);
+      super();
+      setBounds(0, 0 , 900, 800);
+      setLayout(null);
 
-        img = new ImageIcon("pic1.jpg");
-        imgLabel1 = new JLabel(img);
-        imgLabel1.setBounds(0, 0, 900, 800);
-        add(imgLabel1);
+    }
+    public void actionPerformed(ActionEvent ae){}
 
-      }
-
-        public void actionPerformed(ActionEvent ae){}
 }

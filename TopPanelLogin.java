@@ -19,7 +19,7 @@ public class TopPanelLogin extends JPanel implements ActionListener{
 
         Font f1 = new Font("Cambria",Font.BOLD, 26);
         Font f2 = new Font("Cambria",Font.BOLD, 20);
-        Font f3 = new Font("Cambria",Font.BOLD, 15);
+        Font f3 = new Font("Cambria",Font.BOLD, 16);
 
         title = new JLabel("Welcome to AIUB Library System");
         title.setForeground(Color.WHITE);
@@ -35,7 +35,7 @@ public class TopPanelLogin extends JPanel implements ActionListener{
 
         userLabel = new JLabel("User Name");
         userLabel.setForeground(Color.WHITE);
-        userLabel.setBounds(750, 25, 100, 30);
+        userLabel.setBounds(746, 25, 100, 30);
         userLabel.setFont(f3);
         add(userLabel);
 

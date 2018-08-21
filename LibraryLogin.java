@@ -7,37 +7,47 @@ import java.awt.*;
 public class LibraryLogin extends JFrame implements ActionListener{
 
 	JButton btnLogin, btnExit;
-
-	JPanel MainPanel;
+  JPanel MainPanel;
 
 	TopPanelLogin topPanelLogin;
-	LeftPanel leftPanel;
+	//LeftPanel leftPanelLogin;
 	RightPanelReg rightPanelReg;
+	TopPanel topPanel;
+	LeftPanel leftPanel;
 
   	public LibraryLogin(){
 		super("Login Window");
-
-		this.setSize(1280, 730);
+  	this.setSize(1280, 730);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		MainPanel = new JPanel();
 		MainPanel.setLayout(null);
 
-
-		topPanelLogin = new TopPanelLogin();
-		leftPanel= new LeftPanel();
+	//	topPanelLogin = new TopPanelLogin();
+	//	leftPanelLogin= new LeftPanelLogin();
 		rightPanelReg= new RightPanelReg();
+		leftPanel= new LeftPanel();
+		topPanel= new TopPanel();
 
 
-		MainPanel.add(topPanelLogin);
+
+	/*	MainPanel.add(topPanelLogin);
 		this.add(MainPanel);
-		this.setResizable(false);
+		this.setResizable(false);*/
 
 		MainPanel.add(leftPanel);
 		this.add(MainPanel);
 		this.setResizable(false);
 
 		MainPanel.add(rightPanelReg);
+		this.add(MainPanel);
+		this.setResizable(false);
+
+		MainPanel.add(topPanel);
+		this.add(MainPanel);
+	  this.setResizable(false);
+
+		MainPanel.add(leftPanel);
 		this.add(MainPanel);
 		this.setResizable(false);
 	}
