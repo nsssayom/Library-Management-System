@@ -14,7 +14,7 @@ public class LibraryLogin extends JFrame implements ActionListener{
 	LeftPanel leftPanel;
 	RightPanelReg rightPanelReg;
 
-	public LibraryLogin(){
+  	public LibraryLogin(){
 		super("Login Window");
 
 		this.setSize(1280, 730);
