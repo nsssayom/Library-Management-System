@@ -9,7 +9,7 @@ public class Database{
 	private Statement st = null;
 	private ResultSet rs = null;
 
-	public Database(String dbHost, String dbName, String dbUser, String dbPass){
+	public Database(String dbHost, String dbUser, String dbPass, String dbName){
 		this.dbHost = dbHost;
 		this.dbName = dbName;
 		this.dbUser = dbUser;
@@ -18,9 +18,10 @@ public class Database{
 
 	private void connectDatabase(){
 		try{
+			this.closeConnection();
 			Class.forName("com.mysql.jdbc.Driver");//load driver
 			System.out.println("driver loaded");
-			con = DriverManager.getConnection("jdbc:mysql://" + this.dbHost + ":3306/" + this.dbName ,this.dbUser,this.dbPass);
+			con = DriverManager.getConnection("jdbc:mysql://" + this.dbHost + ":3306/" + this.dbName + "?autoReconnect=true&useSSL=false" ,this.dbUser,this.dbPass);
 			System.out.println("connection done");//connection with database established
 			st = con.createStatement();//create statement
 			System.out.println("statement created");
@@ -44,7 +45,7 @@ public class Database{
 			return null;
 		}
 		finally{
-			this.closeConnection();
+			//this.closeConnection();
 		}
 	}
 

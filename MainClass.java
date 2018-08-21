@@ -3,12 +3,13 @@ import java.sql.*;
 
 public class MainClass{
 	public static void main(String[] args){
-		Database database = new Database("localhost", "test", "root", "");
-		String query = "SELECT `name` FROM `test`;"; 
+		//Database database = new Database("localhost", "test", "root", "");
+		Database database = new Database("54.37.227.144", "my_library", "Library009", "library_database");
+		String query = "SELECT `name` FROM `test`;";
 		ResultSet result = database.runQuery(query);
 
 		System.out.println("results received");
-		
+
 		try{
 			while(result.next()){
 				String userId = result.getString("name");
