@@ -7,7 +7,9 @@ import java.awt.*;
 public class LibraryLogin extends JFrame implements ActionListener{
 
 	JButton btnLogin, btnExit;
+
 	JPanel MainPanel;
+
 	TopPanelLogin topPanelLogin;
 	LeftPanel leftPanel;
 	RightPanelReg rightPanelReg;
