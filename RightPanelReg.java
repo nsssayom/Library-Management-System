@@ -67,7 +67,7 @@ public class RightPanelReg extends JPanel implements ActionListener{
     add(nameTF);
 
     idTF = new JTextField();
-    nameTF.setBounds(130, 190, 170, 30);
+    idTF.setBounds(130, 190, 170, 30);
     add(idTF);
 
     emailTF = new JTextField();
