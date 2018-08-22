@@ -9,11 +9,13 @@ public class LibraryLogin extends JFrame implements ActionListener{
 	JButton btnLogin, btnExit;
   JPanel MainPanel;
 
-	TopPanelLogin topPanelLogin;
-	//LeftPanel leftPanelLogin;
-	RightPanelReg rightPanelReg;
+	//TopPanelLogin topPanelLogin;
+	LeftPanelLogin leftPanelLogin;
+	//RightPanelReg rightPanelReg;
 	TopPanel topPanel;
-	LeftPanel leftPanel;
+  //	LeftPanel leftPanel;
+  RightPanelUser rightPanelUser;
+  //RightPanelEmployee rightPanelEmployee;
 
   	public LibraryLogin(){
 		super("Login Window");
@@ -24,32 +26,41 @@ public class LibraryLogin extends JFrame implements ActionListener{
 		MainPanel.setLayout(null);
 
 	//	topPanelLogin = new TopPanelLogin();
-	//	leftPanelLogin= new LeftPanelLogin();
-		rightPanelReg= new RightPanelReg();
-		leftPanel= new LeftPanel();
-		topPanel= new TopPanel();
-
+		leftPanelLogin= new LeftPanelLogin();
+		//rightPanelReg= new RightPanelReg();
+	  topPanel= new TopPanel();
+	//leftPanel= new LeftPanel();
+	rightPanelUser= new RightPanelUser();
+	//rightPanelEmployee= new RightPanelEmployee();
 
 
 	/*	MainPanel.add(topPanelLogin);
 		this.add(MainPanel);
 		this.setResizable(false);*/
 
-		MainPanel.add(leftPanel);
+		MainPanel.add(leftPanelLogin);
 		this.add(MainPanel);
 		this.setResizable(false);
 
-		MainPanel.add(rightPanelReg);
+		/*MainPanel.add(rightPanelReg);
 		this.add(MainPanel);
-		this.setResizable(false);
+		this.setResizable(false);*/
 
 		MainPanel.add(topPanel);
 		this.add(MainPanel);
 	  this.setResizable(false);
 
-		MainPanel.add(leftPanel);
+	/*	MainPanel.add(leftPanel);
+		this.add(MainPanel);
+		this.setResizable(false);*/
+
+		MainPanel.add(rightPanelUser);
 		this.add(MainPanel);
 		this.setResizable(false);
+
+	/*	MainPanel.add(rightPanelEmployee);
+		this.add(MainPanel);
+		this.setResizable(false);*/
 	}
 
 /*public void mousePressed(MouseEvent me){}

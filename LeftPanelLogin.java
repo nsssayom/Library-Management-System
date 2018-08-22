@@ -12,12 +12,12 @@ public class LeftPanelLogin extends JPanel implements ActionListener{
     public LeftPanelLogin(){
 
         super();
-        setBounds(0, 0 , 900, 800);
+        setBounds(0, 100 , 900, 800);
         setLayout(null);
 
         img = new ImageIcon("pic1.jpg");
         imgLabel1 = new JLabel(img);
-        imgLabel1.setBounds(0, 0, 900, 800);
+        imgLabel1.setBounds(0, -100, 900, 800);
         add(imgLabel1);
       }
 

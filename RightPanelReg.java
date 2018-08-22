@@ -53,12 +53,12 @@ public class RightPanelReg extends JPanel implements ActionListener{
     add(addressLabel);
 
     userNameLabel = new JLabel("User name:");
-    userNameLabel.setBounds(30, 355, 100, 30);
+    userNameLabel.setBounds(30, 370, 100, 30);
     userNameLabel.setFont(f4);
     add(userNameLabel);
 
     passwordLabel = new JLabel("Password:");
-    passwordLabel.setBounds(30, 395, 100, 30);
+    passwordLabel.setBounds(30,410 , 100, 30);
     passwordLabel.setFont(f4);
     add(passwordLabel);
 
@@ -83,11 +83,11 @@ public class RightPanelReg extends JPanel implements ActionListener{
     add(addressTF);
 
     userNameTF = new JTextField();
-    userNameTF.setBounds(130, 355, 170, 30);
+    userNameTF.setBounds(130, 370, 170, 30);
     add(userNameTF);
 
     passPF2 = new JPasswordField();
-    passPF2.setBounds(130,395,170,30);
+    passPF2.setBounds(130,410,170,30);
     add(passPF2);
 
     btnSignUp = new JButton("Sign up");
