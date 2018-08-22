@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class RightPanelReg extends JPanel implements ActionListener{
 
-  JLabel signLabel, nameLabel, emailLabel, passwordLabel,termLabel,termLabel2;
-	JTextField  nameTF, emailTF;
+  JLabel signLabel, nameLabel, idLabel, emailLabel, phoneLabel, addressLabel, userNameLabel, passwordLabel, termLabel, termLabel2;
+	JTextField  nameTF, idTF, emailTF, phoneTF, addressTF,userNameTF;
 	JPasswordField  passPF2;
 	JButton btnLogin, btnExit, btnSignUp;
 
@@ -22,48 +22,84 @@ public class RightPanelReg extends JPanel implements ActionListener{
     Font f4= new Font("Cambria",Font.BOLD, 17);
 
     signLabel = new JLabel("New here? Create a free account");
-    signLabel.setBounds(30, 90, 400, 30);
+    signLabel.setBounds(30, 70, 400, 30);
     signLabel.setFont(f2);
     signLabel.setOpaque(true);
     add(signLabel);
 
     nameLabel = new JLabel("Name:");
-    nameLabel.setBounds(30, 200, 50, 30);
+    nameLabel.setBounds(30, 150, 50, 30);
     nameLabel.setFont(f4);
     add(nameLabel);
 
+    idLabel = new JLabel("ID:");
+    idLabel.setBounds(30, 190, 50, 30);
+    idLabel.setFont(f4);
+    add(idLabel);
+
     emailLabel = new JLabel("E-mail:");
-    emailLabel.setBounds(30, 240, 80, 30);
+    emailLabel.setBounds(30, 230, 80, 30);
     emailLabel.setFont(f4);
     add(emailLabel);
 
+    phoneLabel = new JLabel("Phone no:");
+    phoneLabel.setBounds(30, 270, 100, 30);
+    phoneLabel.setFont(f4);
+    add(phoneLabel);
+
+    addressLabel = new JLabel("Address:");
+    addressLabel.setBounds(30, 310, 100, 30);
+    addressLabel.setFont(f4);
+    add(addressLabel);
+
+    userNameLabel = new JLabel("User name:");
+    userNameLabel.setBounds(30, 355, 100, 30);
+    userNameLabel.setFont(f4);
+    add(userNameLabel);
+
     passwordLabel = new JLabel("Password:");
-    passwordLabel.setBounds(30, 280, 100, 30);
+    passwordLabel.setBounds(30, 395, 100, 30);
     passwordLabel.setFont(f4);
     add(passwordLabel);
 
     nameTF = new JTextField();
-    nameTF.setBounds(120, 200, 170, 30);
+    nameTF.setBounds(130, 150, 170, 30);
     add(nameTF);
 
+    idTF = new JTextField();
+    nameTF.setBounds(130, 190, 170, 30);
+    add(idTF);
+
     emailTF = new JTextField();
-    emailTF.setBounds(120, 240, 170, 30);
+    emailTF.setBounds(130, 230, 170, 30);
     add(emailTF);
 
+    phoneTF = new JTextField();
+    phoneTF.setBounds(130, 270, 170, 30);
+    add(phoneTF);
+
+    addressTF = new JTextField();
+    addressTF.setBounds(130, 310, 170, 30);
+    add(addressTF);
+
+    userNameTF = new JTextField();
+    userNameTF.setBounds(130, 355, 170, 30);
+    add(userNameTF);
+
     passPF2 = new JPasswordField();
-    passPF2.setBounds(120,280,170,30);
+    passPF2.setBounds(130,395,170,30);
     add(passPF2);
 
     btnSignUp = new JButton("Sign up");
-    btnSignUp.setBounds(30, 360, 90, 33);
+    btnSignUp.setBounds(30, 470, 90, 33);
     btnSignUp.addActionListener(this);
     add(btnSignUp);
 
     termLabel = new JLabel("By clicking this I am accepting ");
-    termLabel.setBounds(132, 350, 300, 30);
+    termLabel.setBounds(132, 464, 300, 30);
     add(termLabel);
     termLabel2 = new JLabel("all the terms and conditions");
-    termLabel2.setBounds(132, 370, 300, 30);
+    termLabel2.setBounds(132, 484, 300, 30);
     add(termLabel2);
 
     btnExit = new JButton("Exit");
