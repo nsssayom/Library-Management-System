@@ -19,5 +19,12 @@ public class MainClass{
 		catch(Exception ex){
 			ex.printStackTrace();
 		}
+
+		try{
+			database.addNewBook("4", "Test Title", "testAuthor", "00110101", "2018", "8", null, "10", "12");
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 }
