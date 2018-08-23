@@ -88,44 +88,31 @@ public class Database{
 			}
 	}
 
-	public Boolean addNewBook(String bookID, String bookTitle, String authorName, String ISBN,
-														 String publicationYear, String shelf, String bookAddDate, String popularity, String quantity){
-      String bookAddQuery = "INSERT INTO books (bookid, booktitle, authorname, isbn, publicationyear, shelf, bookadddate, popularity)"
-													+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+	public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
+														 String publicationYear, String shelf, String quantity){
+      String bookAddQuery = "INSERT INTO books (booktitle, authorname, isbn, publicationyear, shelf, totalquantity, availablequantity)"
+													+ "VALUES(?, ?, ?, ?, ?, ?, ?);";
 			this.connectDatabase();
 
 			try{
 				this.ps = this.con.prepareStatement(bookAddQuery);
-				ps.setString(1, bookID);
-				ps.setString(2, bookTitle);
-				ps.setString(3, authorName);
-				ps.setString(4, ISBN);
-				ps.setString(5, publicationYear);
-				ps.setString(6, shelf);
-				ps.setString(7, bookAddDate);
-				ps.setString(8, popularity);
-				this.runUpdate(ps);
-			}
-			catch(Exception ex){
-				ex.printStackTrace();
-			}
-
-			String bookQuantityQuery = "INSERT INTO bookQuantity (bookid, totalquantity, availablequantity)"
-																+ "VALUES(?, ?, ?);";
-			this.connectDatabase();
-
-			try{
-				this.ps = this.con.prepareStatement(bookQuantityQuery);
-				ps.setString(1, bookID);
-				ps.setString(2, quantity);
-				ps.setString(3, quantity);
+				ps.setString(1, bookTitle);
+				ps.setString(2, authorName);
+				ps.setString(3, ISBN);
+				ps.setString(4, publicationYear);
+				ps.setString(5, shelf);
+				ps.setString(6, quantity);
+				ps.setString(7, quantity);
 				this.runUpdate(ps);
 				return true;
 			}
 			catch(Exception ex){
 				ex.printStackTrace();
-				return false;
 			}
+			finally{
+				this.closeConnection();
+			}
+			return false;
 	}
 
 }

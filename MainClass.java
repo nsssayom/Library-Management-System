@@ -21,7 +21,7 @@ public class MainClass{
 		}
 
 		try{
-			database.addNewBook("4", "Test Title", "testAuthor", "00110101", "2018", "8", null, "10", "12");
+			database.addNewBook( "bookTitle", "authorName", "10010", "2018", "7", "5");
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
