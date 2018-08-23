@@ -21,7 +21,8 @@ public class MainClass{
 		}
 
 		try{
-			database.addNewBook( "bookTitle", "authorName", "10010", "2018", "7", "5");
+			//database.addNewBook( "bookTitle", "authorName", "10010", "2018", "7", "5");
+			database.signUp("Sayom Shakib", "17-33926-1", "nsssayom@gmail.com", "+8801717018376", "address", "nsssayom", "11223344", "1", "1600");
 		}
 		catch(Exception ex){
 			ex.printStackTrace();

@@ -24,7 +24,7 @@ public class Database{
 			this.closeConnection();
 			Class.forName("com.mysql.jdbc.Driver");//load driver
 			System.out.println("driver loaded");
-			con = DriverManager.getConnection("jdbc:mysql://" + this.dbHost + ":3306/" + this.dbName + "?autoReconnect=true&useSSL=false" ,this.dbUser,this.dbPass);
+			con = DriverManager.getConnection("jdbc:mysql://" + this.dbHost + ":3306/" + this.dbName + "?autoReconnect=true&useSSL=false&allowMultiQueries=true" ,this.dbUser,this.dbPass);
 			System.out.println("connection done");//connection with database established
 			st = con.createStatement();//create statement
 			System.out.println("statement created");
@@ -86,6 +86,52 @@ public class Database{
 				System.out.println("Database connection closing failed");
 				ex.printStackTrace();
 			}
+	}
+
+	public Boolean signUp(String name, String ID, String email, String phone, String address, String userName, String password, String roleID, String... salary){
+		String signUpQuery;
+		if (roleID.equals("4") && salary.length == 0){
+			signUpQuery = 	"BEGIN;"
+											+ "INSERT INTO people (name, phoneNumber, email, address)"
+	  									+ " VALUES(?, ?, ?, ?);"
+											+ "INSERT INTO userAccount (peopleID, userName, password, roleID)"
+	  									+ " VALUES(LAST_INSERT_ID(), ?, ?, ?);"
+											+ " COMMIT;";
+		}
+		else{
+			signUpQuery = 	"BEGIN;"
+											+ " INSERT INTO people(name, phoneNumber, email, address)"
+	  									+ " VALUES(?, ?, ?, ?);"
+											+ " INSERT INTO userAccount(peopleID, userName, password, roleID)"
+	  									+ " VALUES(LAST_INSERT_ID(), ?, ?, ?);"
+											+ " INSERT INTO salary (accountID, salary)"
+											+ " VALUES(LAST_INSERT_ID(), ?);"
+											+ " COMMIT;";
+		}
+		this.connectDatabase();
+		try{
+			this.ps = this.con.prepareStatement(signUpQuery);
+			ps.setString(1, name);
+			ps.setString(2, phone);
+			ps.setString(3, email);
+			ps.setString(4, address);
+			ps.setString(5, userName);
+			ps.setString(6, password);
+			ps.setString(7, roleID);
+			if (salary.length > 0){
+					ps.setString(8, salary[0]);
+			}
+			System.out.println(ps);
+			this.runUpdate(ps);
+			return true;
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+		finally{
+			this.closeConnection();
+		}
+		return false;
 	}
 
 	public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
