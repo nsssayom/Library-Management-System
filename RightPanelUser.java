@@ -27,37 +27,37 @@ JButton  btnBorrowedBooks;
     btnMyInfo.setBounds(130, 170, 150, 40);
   //  btnMyInfo.addActionListener(this);
 		btnMyInfo.addMouseListener(this);
-		//btnMyinfo.setOpaque(true);
+//		btnMyinfo.setOpaque(true);
     add(btnMyInfo);
 
   btnBorrowedBooks = new JButton("Borrowed books");
   btnBorrowedBooks.setBounds(130, 250, 150, 40);
   //btnBorrowedBooks.addActionListener(this);
 	btnBorrowedBooks.addMouseListener(this);
-
 	add(btnBorrowedBooks);
   }
 
-	public void mouseClicked(MouseEvent me){}
-	public void mousePressed(MouseEvent me){}
-	public void mouseReleased(MouseEvent me){}
-	public void mouseEntered(MouseEvent me){}
-	public void mouseExited(MouseEvent me){}
+	  public void mousePressed(MouseEvent me){}
+		public void mouseReleased(MouseEvent me){}
+		public void mouseEntered(MouseEvent me){}
+		public void mouseExited(MouseEvent me){}
+		public void mouseClicked(MouseEvent me){}
+
 
   public void actionPerformed(ActionEvent ae){
 
-		//String text = ae.getActionCommand();
+		String text = ae.getActionCommand();
 		/*if(text.equals(btnMyInfo.getText()))
 		{
     /* LeftPanelUserInfo LU= new LeftPanelUserInfo();
 			LU.setVisible(true);
 			System.exit(0);
 
-		}
-if(ae.getSource== btnMyInfo){
-	System.exit(0);
-}
-*/
+		}*/
+//if(ae.getSource== btnMyInfo){
+//	System.exit(0);
+  //}
+
 	}
 
 }

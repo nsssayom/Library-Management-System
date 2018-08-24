@@ -15,9 +15,11 @@ public class LibraryLogin extends JFrame implements ActionListener{
 	TopPanel topPanel;
 	//LeftPanel leftPanel;
 	 // LeftPanelUserInfo leftPanelUserInfo;
-	 LeftPanelUserInfoUpdate leftPanelUserInfoUpdate;
-	  RightPanelUser rightPanelUser;
-  //RightPanelEmployee rightPanelEmployee;
+	 //LeftPanelUserInfoUpdate leftPanelUserInfoUpdate;
+	 // RightPanelUser rightPanelUser;
+  RightPanelEmployee rightPanelEmployee;
+	//ChangePassword ChangePassword;
+	UpdateBookInfo updateBookInfo;
 
   	public LibraryLogin(){
 		super("Login Window");
@@ -33,9 +35,11 @@ public class LibraryLogin extends JFrame implements ActionListener{
 	  topPanel= new TopPanel();
 	 //leftPanel= new LeftPanel();
 		//leftPanelUserInfo= new LeftPanelUserInfo();
-		leftPanelUserInfoUpdate= new LeftPanelUserInfoUpdate();
-		rightPanelUser= new RightPanelUser();
-	//rightPanelEmployee= new RightPanelEmployee();
+	//	leftPanelUserInfoUpdate= new LeftPanelUserInfoUpdate();
+	//	rightPanelUser= new RightPanelUser();
+	rightPanelEmployee= new RightPanelEmployee();
+//	changePassword= new ChangePassword();
+updateBookInfo= new UpdateBookInfo();
 
 
 	/*	MainPanel.add(topPanelLogin);
@@ -62,17 +66,26 @@ public class LibraryLogin extends JFrame implements ActionListener{
 		this.add(MainPanel);
 		this.setResizable(false);*/
 
-			MainPanel.add(leftPanelUserInfoUpdate);
+		/*	MainPanel.add(leftPanelUserInfoUpdate);
 			this.add(MainPanel);
-			this.setResizable(false);
+			this.setResizable(false);*/
 
-		MainPanel.add(rightPanelUser);
+	/*	MainPanel.add(rightPanelUser);
+		this.add(MainPanel);
+		this.setResizable(false);*/
+
+		MainPanel.add(rightPanelEmployee);
 		this.add(MainPanel);
 		this.setResizable(false);
 
-	/*	MainPanel.add(rightPanelEmployee);
+	/*	MainPanel.add(changePassword);
 		this.add(MainPanel);
 		this.setResizable(false);*/
+
+		MainPanel.add(updateBookInfo);
+		this.add(MainPanel);
+		this.setResizable(false);
+
 	}
 
 /*public void mousePressed(MouseEvent me){}
