@@ -38,7 +38,9 @@ public class Database{
     public ResultSet runQuery(PreparedStatement statement){
 		//this.connectDatabase();
     try{
+			System.out.println("Statement: " + statement);
 			rs = statement.executeQuery();
+			System.out.println(rs);
 			return rs;
 		}
     catch(Exception ex){
@@ -134,24 +136,26 @@ public class Database{
 	}
 
 	public void logIn(String userName, String password) throws LibraryException{
-		String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?);";
+		String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?;";
 		this.connectDatabase();
 
 		try{
 			this.ps = this.con.prepareStatement(userNameQuery);
 			ps.setString(1, userName);
+			System.out.println(ps);
 			ResultSet result = this.runQuery(ps);
-			if (result.isBeforeFirst()) {
+			if (result.first()) {
 				this.ps = null;
+				System.out.println("=>" + result);
 				String accountID = result.getString("accountID");
-    		String loginQuery = "SELECT roleID FROM userAccount WHERE " + "accountID = ? AND password = ?);";
-
+    		String loginQuery = "SELECT roleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
 				try{
 					this.ps = this.con.prepareStatement(loginQuery);
 					this.ps.setString(1, accountID);
 					this.ps.setString(2, Crypto.SHA256(password).toUpperCase());
+					System.out.println(ps);
 					ResultSet resultLogin = this.runQuery(ps);
-					if (resultLogin.isBeforeFirst()){
+					if (resultLogin.first()){
 						System.out.println("Login Successful");
 					}
 					else{
