@@ -1,8 +1,5 @@
 import java.sql.*;
 import java.lang.*;
-import java.security.*;
-import java.util.*;
-import javax.crypto.*;
 
 public class Database{
 	private String dbHost;
@@ -38,14 +35,13 @@ public class Database{
 		}
 	}
 
-    public ResultSet runQuery(String query){
-		this.connectDatabase();
-		System.out.println(query);
-        try{
-			rs = st.executeQuery(query);
+    public ResultSet runQuery(PreparedStatement statement){
+		//this.connectDatabase();
+    try{
+			rs = statement.executeQuery();
 			return rs;
 		}
-        catch(Exception ex){
+    catch(Exception ex){
 			System.out.println("Executing Query Error: " + ex.getMessage());
 			return null;
 		}
@@ -119,7 +115,7 @@ public class Database{
 			ps.setString(3, email);
 			ps.setString(4, address);
 			ps.setString(5, userName);
-			ps.setString(6, Crypto.SHA256(password));
+			ps.setString(6, Crypto.SHA256(password).toUpperCase());
 			ps.setString(7, roleID);
 			if (salary.length > 0){
 					ps.setString(8, salary[0]);
@@ -136,6 +132,47 @@ public class Database{
 		}
 		return false;
 	}
+
+	public void logIn(String userName, String password) throws LibraryException{
+		String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?);";
+		this.connectDatabase();
+
+		try{
+			this.ps = this.con.prepareStatement(userNameQuery);
+			ps.setString(1, userName);
+			ResultSet result = this.runQuery(ps);
+			if (result.isBeforeFirst()) {
+				this.ps = null;
+				String accountID = result.getString("accountID");
+    		String loginQuery = "SELECT roleID FROM userAccount WHERE " + "accountID = ? AND password = ?);";
+
+				try{
+					this.ps = this.con.prepareStatement(loginQuery);
+					this.ps.setString(1, accountID);
+					this.ps.setString(2, Crypto.SHA256(password).toUpperCase());
+					ResultSet resultLogin = this.runQuery(ps);
+					if (resultLogin.isBeforeFirst()){
+						System.out.println("Login Successful");
+					}
+					else{
+						throw new LibraryException("Wrong Password", 202);
+					}
+				}
+				catch(Exception ex){
+					ex.printStackTrace();
+				}
+			}
+			else{
+				throw new LibraryException("User not found", 201);
+			}
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+		finally{
+			this.closeConnection();
+		}
+}
 
 	public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 														 String publicationYear, String shelf, String quantity){

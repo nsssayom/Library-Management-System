@@ -10,7 +10,6 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
  JButton btnUpdateInfo;
 
   public LeftPanelUserInfo(){
-
       super();
       //setBounds(0, 100 , 900, 800);
       //setLayout(null);
