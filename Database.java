@@ -1,5 +1,8 @@
 import java.sql.*;
 import java.lang.*;
+import java.security.*;
+import java.util.*;
+import javax.crypto.*;
 
 public class Database{
 	private String dbHost;
@@ -116,7 +119,7 @@ public class Database{
 			ps.setString(3, email);
 			ps.setString(4, address);
 			ps.setString(5, userName);
-			ps.setString(6, password);
+			ps.setString(6, Crypto.SHA256(password));
 			ps.setString(7, roleID);
 			if (salary.length > 0){
 					ps.setString(8, salary[0]);
