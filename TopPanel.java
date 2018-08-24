@@ -25,8 +25,6 @@ public class TopPanel extends JPanel implements ActionListener{
     titleT1.setFont(f4);
     add(titleT1);
 
-    
-
     colorLabelT1 = new JLabel();
     colorLabelT1.setBounds(0, 0, 1280, 100);
     colorLabelT1.setBackground(new Color(127,86,68));
