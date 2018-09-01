@@ -89,8 +89,8 @@ public class TopPanelLogin extends JPanel implements ActionListener{
   			}
   			catch(LibraryException lx){
   				System.out.println(lx.getCode());
+          JOptionPane.showMessageDialog(null, "ALERT MESSAGE", "TITLE", JOptionPane.WARNING_MESSAGE);
   			}
       }
     }
-
 }

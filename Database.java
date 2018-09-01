@@ -135,7 +135,7 @@ public class Database{
 		return false;
 	}
 
-	public Boolean logIn(String userName, String password) throws LibraryException{
+	public void logIn(String userName, String password) throws LibraryException{
 		String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?;";
 		this.connectDatabase();
 
@@ -157,24 +157,21 @@ public class Database{
 					ResultSet resultLogin = this.runQuery(ps);
 					if (resultLogin.first()){
 						System.out.println("Login Successful");
-						return true;
 					}
 					else{
 						throw new LibraryException("Wrong Password", 202);
-						return false;
 					}
 				}
 				catch(Exception ex){
-					ex.printStackTrace();
+					throw  new LibraryException ("Can not Run Query", 301);
 				}
 			}
 			else{
 				throw new LibraryException("User not found", 201);
-				return false;
 			}
 		}
 		catch(Exception ex){
-			ex.printStackTrace();
+			throw new LibraryException ("Can not create statement", 302);
 		}
 		finally{
 			this.closeConnection();
