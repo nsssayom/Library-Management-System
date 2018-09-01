@@ -33,7 +33,7 @@ public class TopPanelLogin extends JPanel implements ActionListener{
         title1.setFont(f2);
         add(title1);
 
-        userLabel = new JLabel("User Name");
+        userLabel = new JLabel("Username");
         userLabel.setForeground(Color.WHITE);
         userLabel.setBounds(746, 25, 100, 30);
         userLabel.setFont(f3);
@@ -77,6 +77,20 @@ public class TopPanelLogin extends JPanel implements ActionListener{
         add(colorLabel);
     }
 
-    public void actionPerformed(ActionEvent ae){}
+    public void actionPerformed(ActionEvent ae){
+      JButton pressedButton = (JButton) ae.getSource();
+      if (pressedButton.getText() == "Login"){
+        System.out.println("Login Button Pressed!");
+        String userName = userTF.getText();
+        String password = new String(passPF1.getPassword());
+        System.out.println(userName + "|" + password);
+        try{
+  				GUI.database.logIn(userName, password);
+  			}
+  			catch(LibraryException lx){
+  				System.out.println(lx.getCode());
+  			}
+      }
+    }
 
 }

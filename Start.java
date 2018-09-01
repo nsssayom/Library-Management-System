@@ -1,10 +1,8 @@
 import java.lang.*;
 
-public class Start
-{
-	public static void main(String []args)
-	{
-		LibraryLogin  B = new LibraryLogin();
-		B.setVisible(true);
+public class Start{
+	public static void main(String []args){
+		GUI  gui = new GUI();
+		gui.setVisible(true);
 	}
 }
