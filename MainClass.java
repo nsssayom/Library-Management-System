@@ -27,10 +27,17 @@ public class MainClass{
 			//database.signUp("Sayom Shakib", "17-33926-1", "nsssayom@gmail.com", "+8801717018376", "address", "nsssayom", "11223344", "1", "1600");
 			//System.out.println(Crypto.SHA256("HHH").toUpperCase());
 			try{
-				GUI.database.logIn("nsssayom", "11223344");
+				//int res =
+				GUI.database.logIn("nsssayom", "011223344");
+				//System.out.println("Login returns: " + res);
 			}
 			catch(LibraryException lx){
 				System.out.println(lx.getCode());
+			}
+			catch(Exception ex){
+				if (!(ex instanceof LibraryException)){
+					ex.printStackTrace();
+				}
 			}
 
 		}

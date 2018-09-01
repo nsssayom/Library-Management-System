@@ -79,17 +79,23 @@ public class TopPanelLogin extends JPanel implements ActionListener{
 
     public void actionPerformed(ActionEvent ae){
       JButton pressedButton = (JButton) ae.getSource();
+      String userName = userTF.getText();
+      String password = new String(passPF1.getPassword());
+
+      if ((userName == "") || (password == "")){
+        JOptionPane.showMessageDialog(null, "ALERT MESSAGE", "TITLE", JOptionPane.WARNING_MESSAGE);
+        return;
+      }
+
       if (pressedButton.getText() == "Login"){
         System.out.println("Login Button Pressed!");
-        String userName = userTF.getText();
-        String password = new String(passPF1.getPassword());
         System.out.println(userName + "|" + password);
         try{
   				GUI.database.logIn(userName, password);
+          JOptionPane.showMessageDialog(null, "Successfully Looged in!", "Success", JOptionPane.WARNING_MESSAGE);
   			}
   			catch(LibraryException lx){
-  				System.out.println(lx.getCode());
-          JOptionPane.showMessageDialog(null, "ALERT MESSAGE", "TITLE", JOptionPane.WARNING_MESSAGE);
+          JOptionPane.showMessageDialog(null, lx.getMessage(), "Error: " + lx.getCode(), JOptionPane.WARNING_MESSAGE);
   			}
       }
     }

@@ -135,50 +135,93 @@ public class Database{
 		return false;
 	}
 
-	public void logIn(String userName, String password) throws LibraryException{
-		String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?;";
-		this.connectDatabase();
+public void logIn(String userName, String password) throws LibraryException{
+	String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?;";
+	String loginQuery = "SELECT roleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
+	this.connectDatabase();
+	ResultSet result;
+	ResultSet resultLogin;
+	String accountID = "";
+	String roleID;
+	int roleIDInt = -1;
 
-		try{
-			this.ps = this.con.prepareStatement(userNameQuery);
-			ps.setString(1, userName);
-			System.out.println(ps);
-			ResultSet result = this.runQuery(ps);
-			if (result.first()) {
+	//prepare statement and execute sql to find user
+	try{
+		this.ps = this.con.prepareStatement(userNameQuery);
+		ps.setString(1, userName);
+		System.out.println(ps);
+		result = this.runQuery(ps);
+	}
+	catch(Exception ex){
+		throw new LibraryException ("SQL Error", 301);
+	}
+
+	//extracting SQL return to get user accountID
+	try{
+		if (result.first()) {
 				this.ps = null;
 				System.out.println("=>" + result);
-				String accountID = result.getString("accountID");
-    		String loginQuery = "SELECT roleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
-				try{
-					this.ps = this.con.prepareStatement(loginQuery);
-					this.ps.setString(1, accountID);
-					this.ps.setString(2, Crypto.SHA256(password).toUpperCase());
-					System.out.println(ps);
-					ResultSet resultLogin = this.runQuery(ps);
-					if (resultLogin.first()){
-						System.out.println("Login Successful");
-					}
-					else{
-						throw new LibraryException("Wrong Password", 202);
-					}
-				}
-				catch(Exception ex){
-					throw  new LibraryException ("Can not Run Query", 301);
-				}
+				accountID = result.getString("accountID");
+				System.out.println("Found User!");
 			}
 			else{
+				System.out.println("User not Found");
 				throw new LibraryException("User not found", 201);
 			}
+	}
+	catch(Exception ex){
+		if (!(ex instanceof LibraryException)){
+			throw new LibraryException("SQL Error", 301);
 		}
-		catch(Exception ex){
-			throw new LibraryException ("Can not create statement", 302);
+		else{
+			throw new LibraryException("User not found", 201);
 		}
-		finally{
-			this.closeConnection();
+	}
+
+	//prepare statement and execute SQL to match password
+	try{
+		this.ps = this.con.prepareStatement(loginQuery);
+		this.ps.setString(1, accountID);
+		this.ps.setString(2, Crypto.SHA256(password).toUpperCase());
+		System.out.println(ps);
+		resultLogin = this.runQuery(ps);
+	}
+	catch(Exception ex){
+		throw  new LibraryException ("SQL Error", 301);
+	}
+
+	//extracting SQL return to get user roleID
+	try{
+		if (resultLogin.first()){
+			this.ps = null;
+			System.out.println("Login Successful");
+			roleID = resultLogin.getString("roleID");
+			System.out.println(roleID);
+			roleIDInt = Integer.parseInt(roleID);
+			System.out.println("User Role Found!");
 		}
+		else{
+			System.out.println("User Role not Found");
+			throw new LibraryException("Wrong Password", 202);
+		}
+	}
+	catch(Exception ex){
+		if (!(ex instanceof LibraryException)){
+			throw new LibraryException("SQL Error", 301);
+		}
+		else{
+			System.out.println("Hello World Error");
+			throw new LibraryException("Wrong Password", 202);
+		}
+	}
 }
 
-	public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
+
+
+
+
+
+public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 														 String publicationYear, String shelf, String quantity){
       String bookAddQuery = "INSERT INTO books (booktitle, authorname, isbn, publicationyear, shelf, totalquantity, availablequantity)"
 													+ "VALUES(?, ?, ?, ?, ?, ?, ?);";
