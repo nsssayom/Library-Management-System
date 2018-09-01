@@ -1,3 +1,5 @@
+package LibrarySystem.Panels.LeftPanels;
+
 import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -6,7 +8,7 @@ import java.awt.*;
 
 public class LeftPanelBorrowedBooks extends LeftPanel implements ActionListener{
 
- 
+
   public LeftPanelBorrowedBooks(){
 
       super();

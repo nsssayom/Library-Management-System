@@ -1,3 +1,12 @@
+package LibrarySystem.Windows;
+
+import LibrarySystem.Database.*;
+import LibrarySystem.Modules.*;
+import LibrarySystem.Windows.*;
+import LibrarySystem.Panels.LeftPanels.*;
+import LibrarySystem.Panels.RightPanels.*;
+import LibrarySystem.Panels.TopPanels.*;
+
 import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -9,7 +18,6 @@ public class GUI extends JFrame implements ActionListener{
 
 	JButton btnLogin, btnExit;
   JPanel mainPanel;
-	TopPanelLogin topPanelLogin;
 	LeftPanel leftPanel;
 	LeftPanelLogin leftPanelLogin;
 	LeftPanelUserInfo leftPanelUserInfo;
@@ -19,6 +27,7 @@ public class GUI extends JFrame implements ActionListener{
   RightPanelEmployee rightPanelEmployee;
 	ChangePassword ChangePassword;
 	UpdateBookInfo updateBookInfo;
+	TopPanelLogin topPanelLogin;
 
 	public GUI(){
 		//initiating the JFrame instance

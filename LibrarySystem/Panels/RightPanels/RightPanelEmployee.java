@@ -1,4 +1,6 @@
-  import java.lang.*;
+package LibrarySystem.Panels.RightPanels;
+
+import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;

@@ -1,3 +1,11 @@
+
+import LibrarySystem.Database.*;
+import LibrarySystem.Modules.*;
+import LibrarySystem.Windows.*;
+import LibrarySystem.Panels.LeftPanels.*;
+import LibrarySystem.Panels.RightPanels.*;
+import LibrarySystem.Panels.TopPanels.*;
+
 import java.lang.*;
 import java.sql.*;
 

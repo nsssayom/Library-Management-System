@@ -1,3 +1,4 @@
+package LibrarySystem.Modules;
 import java.lang.*;
 
 public class LibraryException extends Exception {

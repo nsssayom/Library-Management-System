@@ -1,3 +1,5 @@
+package LibrarySystem.Panels.TopPanels;
+
 import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -8,8 +10,6 @@ public class TopPanel extends JPanel implements ActionListener{
 
   JLabel titleT1, colorLabelT1;
 //  JComboBox comboBoxT1;
-
-
 
   public TopPanel(){
     super();

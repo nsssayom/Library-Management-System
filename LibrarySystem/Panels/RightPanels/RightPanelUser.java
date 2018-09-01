@@ -1,3 +1,5 @@
+package LibrarySystem.Panels.RightPanels;
+
 import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
