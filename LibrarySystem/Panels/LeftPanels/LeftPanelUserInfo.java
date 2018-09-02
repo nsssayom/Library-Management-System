@@ -17,6 +17,7 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
 
  JLabel userInfoMyInfoLabel, userInfoNameLabel, userInfoIdLabel, userINfoEmailLabel, userInfoPhoneLabel, userInfoAddressLabel, userInfoUserNameLabel;
  JLabel nameData,idData,emailData,phoneData,addressData,userNameData;
+ JButton btnDeleteMyAccount;
 
   public LeftPanelUserInfo(){
       super();
@@ -93,6 +94,11 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
       userNameData.setFont(f6);
       add(userNameData);
 
+    	btnDeleteMyAccount = new JButton("Delete My Account");
+  		btnDeleteMyAccount.setBounds(140, 570, 250, 30);
+      btnDeleteMyAccount.setFont(f4);
+      btnDeleteMyAccount.setForeground(Color.RED);
+      add(btnDeleteMyAccount);
   }
     public void actionPerformed(ActionEvent ae){}
 

@@ -15,8 +15,8 @@ import java.awt.*;
 
 public class RightPanelEmployee extends JPanel implements ActionListener{
 
-JLabel employeeAccountLabel, btnEmployeeMyInfo, btnEmployeeInfo, btnCustomerInfo, btnUpdateBookInfo ;
-
+JButton btnViewMyInfo, btnEditMyInfo, btnViewUserInfo, btnViewEmployeeInfo, btnAddNewEmployee ;
+JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
 
 	public RightPanelEmployee(){
 
@@ -24,31 +24,50 @@ JLabel employeeAccountLabel, btnEmployeeMyInfo, btnEmployeeInfo, btnCustomerInfo
     setBounds(900, 100, 380, 800);
     setLayout(null);
 
-		Font f2 = new Font("Cambria",Font.BOLD, 20);
     Font f4= new Font("Cambria",Font.BOLD, 17);
 
-		employeeAccountLabel = new JLabel("Employee Account");
-		employeeAccountLabel.setBounds(120, 63, 400, 40);
-		employeeAccountLabel.setFont(f2);
-		add(employeeAccountLabel);
+		btnViewMyInfo = new JButton("view My Account");
+		btnViewMyInfo.setBounds(50, 50, 250, 30);
+		btnViewMyInfo.setFont(f4);
+		add(btnViewMyInfo);
 
-    btnEmployeeMyInfo = new JLabel("My Information");
-    btnEmployeeMyInfo.setBounds(100, 170, 200, 30);
-    btnEmployeeMyInfo.setFont(f4);
-    add(btnEmployeeMyInfo);
+    btnEditMyInfo = new JButton("Edit My Information");
+    btnEditMyInfo.setBounds(50, 100, 250, 30);
+    btnEditMyInfo.setFont(f4);
+    add(btnEditMyInfo);
 
-    btnEmployeeInfo = new JLabel("Employee Information");
-    btnEmployeeInfo.setBounds(100, 220, 200, 30);
-    btnEmployeeInfo.setFont(f4);
-    add(btnEmployeeInfo);
+    btnViewUserInfo = new JButton("View User Information");
+    btnViewUserInfo.setBounds(50, 150, 250, 30);
+    btnViewUserInfo.setFont(f4);
+    add(btnViewUserInfo);
 
-    btnCustomerInfo = new JLabel("Customer Information");
-    btnCustomerInfo.setBounds(100,270 , 200, 30);
-    btnCustomerInfo.setFont(f4);
-    add(btnCustomerInfo);
+    btnViewEmployeeInfo = new JButton("View Employee Information");
+    btnViewEmployeeInfo.setBounds(50,200 , 250, 30);
+    btnViewEmployeeInfo.setFont(f4);
+    add(btnViewEmployeeInfo);
 
-    btnUpdateBookInfo = new JLabel("Update Book Information");
-    btnUpdateBookInfo.setBounds(100, 320, 200, 40);
+    btnAddNewEmployee = new JButton("Add New Employee");
+    btnAddNewEmployee.setBounds(50, 250, 250, 30);
+    btnAddNewEmployee.setFont(f4);
+    add(btnAddNewEmployee);
+
+		btnAddNewBook = new JButton("Add New Book");
+    btnAddNewBook.setBounds(50, 300, 250, 30);
+    btnAddNewBook.setFont(f4);
+    add(btnAddNewBook);
+
+    btnIssueBook = new JButton("Issue Book");
+    btnIssueBook.setBounds(50, 350, 250, 30);
+    btnIssueBook.setFont(f4);
+    add(btnIssueBook);
+
+    btnReturnBook = new JButton("Return Book");
+    btnReturnBook.setBounds(50,400 , 250, 30);
+    btnReturnBook.setFont(f4);
+    add(btnReturnBook);
+
+    btnUpdateBookInfo = new JButton("Update Book Information");
+    btnUpdateBookInfo.setBounds(50, 450, 250, 30);
     btnUpdateBookInfo.setFont(f4);
     add(btnUpdateBookInfo);
   }
