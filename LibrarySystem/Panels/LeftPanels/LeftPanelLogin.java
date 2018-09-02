@@ -14,7 +14,6 @@ import java.sql.*;
 import java.awt.*;
 
 public class LeftPanelLogin extends LeftPanel implements ActionListener{
-
     JLabel imgLabel1;
     ImageIcon img;
 

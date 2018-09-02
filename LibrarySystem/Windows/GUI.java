@@ -6,6 +6,7 @@ import LibrarySystem.Windows.*;
 import LibrarySystem.Panels.LeftPanels.*;
 import LibrarySystem.Panels.RightPanels.*;
 import LibrarySystem.Panels.TopPanels.*;
+import LibrarySystem.Panels.Tables.*;
 
 import java.lang.*;
 import javax.swing.*;
@@ -30,6 +31,8 @@ public class GUI extends JFrame implements ActionListener{
 
 	TopPanelLogin topPanelLogin;
 	TopPanel topPanel;
+
+	TablePanel tablePanel;
 
 	public GUI(){
 		//initiating the JFrame instance
@@ -70,8 +73,16 @@ public class GUI extends JFrame implements ActionListener{
 			rightPanelUser = new RightPanelUser();
 			mainPanel.add(rightPanelUser);
 
-			leftPanelUserInfo = new LeftPanelUserInfo();
-			mainPanel.add(leftPanelUserInfo);
+			//leftPanelUserInfo = new LeftPanelUserInfo();
+			//mainPanel.add(leftPanelUserInfo);
+			String [] index;
+			index= new String[]{"Rank", "Country", "GDP(millions of US$)"};
+			Object[][] rawData = new Object[] [] {
+										{"1", "USA", "$19.42 Trillion"},
+										{"2", "China","$11.8 Trillion"}
+										};
+			tablePanel = new TablePanel(index, rawData);
+			mainPanel.add(tablePanel);
 		}
 
 		mainPanel.revalidate();

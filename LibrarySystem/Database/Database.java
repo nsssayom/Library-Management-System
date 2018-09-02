@@ -145,7 +145,7 @@ public class Database{
 	}
 
 public void logIn(String userName, String password) throws LibraryException{
-	String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?;";
+	String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ? AND isDeleted = 0;";
 	String loginQuery = "SELECT roleID, peopleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
 	String peopleQuery = "SELECT * FROM people WHERE " + "peopleID = ?;";
 	this.connectDatabase();
