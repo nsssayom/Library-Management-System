@@ -146,11 +146,15 @@ public class Database{
 
 public void logIn(String userName, String password) throws LibraryException{
 	String userNameQuery = "SELECT accountID FROM userAccount WHERE " + "userName = ?;";
-	String loginQuery = "SELECT roleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
+	String loginQuery = "SELECT roleID, peopleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
+	String peopleQuery = "SELECT * FROM people WHERE " + "peopleID = ?;";
 	this.connectDatabase();
 	ResultSet result;
 	ResultSet resultLogin;
+	ResultSet resultPeople;
+
 	String accountID = "";
+	String peopleID = "";
 	String roleID;
 	int roleIDInt = -1;
 
@@ -170,6 +174,7 @@ public void logIn(String userName, String password) throws LibraryException{
 		if (result.first()) {
 				this.ps = null;
 				System.out.println("=>" + result);
+
 				accountID = result.getString("accountID");
 				Global.ACCOUNTID = Integer.parseInt(accountID);
 				System.out.println("Found User!");
@@ -205,11 +210,16 @@ public void logIn(String userName, String password) throws LibraryException{
 		if (resultLogin.first()){
 			this.ps = null;
 			System.out.println("Login Successful");
+
 			roleID = resultLogin.getString("roleID");
+			peopleID = resultLogin.getString("peopleID");
+
 			System.out.println(roleID);
 			roleIDInt = Integer.parseInt(roleID);
 			Global.ROLEID = roleIDInt;
+
 			System.out.println("User Role Found!");
+			System.out.println("PeopleID: " + peopleID);
 		}
 		else{
 			System.out.println("User Role not Found");
@@ -225,8 +235,46 @@ public void logIn(String userName, String password) throws LibraryException{
 			throw new LibraryException("Wrong Password", 202);
 		}
 	}
-}
 
+
+
+
+	//prepare statement and execute sql to find user Details
+	try{
+		this.ps = this.con.prepareStatement(peopleQuery);
+		ps.setString(1, peopleID);
+		System.out.println(ps);
+		resultPeople = this.runQuery(ps);
+	}
+	catch(Exception ex){
+		throw new LibraryException ("SQL Error", 301);
+	}
+
+	//extracting SQL return to get user Details
+	try{
+		if (resultPeople.first()) {
+				this.ps = null;
+				System.out.println("=>" + result);
+
+				Global.NAME = resultPeople.getString("name");
+				Global.EMAIL = resultPeople.getString("email");
+				Global.ADDRESS = resultPeople.getString("address");
+				Global.PHONE = resultPeople.getString("phoneNumber");
+				System.out.println("Name: " + Global.NAME);
+			}
+			else{
+				throw new LibraryException("User detail not found", 203);
+			}
+	}
+	catch(Exception ex){
+		if (!(ex instanceof LibraryException)){
+			throw new LibraryException("SQL Error", 301);
+		}
+		else{
+			throw new LibraryException("User not found", 201);
+		}
+	}
+}
 
 public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 														 String publicationYear, String shelf, String quantity){

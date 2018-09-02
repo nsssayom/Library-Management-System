@@ -83,14 +83,21 @@ public class TopPanelLogin extends JPanel implements ActionListener{
       if (pressedButton.getText() == "Login"){
         System.out.println("Login Button Pressed!");
         System.out.println(userName + " | " + password);
-        try{
-  				Global.database.logIn(userName, password);
-          //JOptionPane.showMessageDialog(null, "Successfully Looged in!", "Success", JOptionPane.WARNING_MESSAGE);
-          Global.gui.showHome();
-  			}
-  			catch(LibraryException lx){
-          JOptionPane.showMessageDialog(null, lx.getMessage(), "Error: " + lx.getCode(), JOptionPane.WARNING_MESSAGE);
-  			}
+
+        if ((userName != null && !userName.isEmpty())
+        && (password != null && !password.isEmpty())) {
+          try{
+    				Global.database.logIn(userName, password);
+            //JOptionPane.showMessageDialog(null, "Successfully Looged in!", "Success", JOptionPane.WARNING_MESSAGE);
+            Global.gui.showHome();
+    			}
+    			catch(LibraryException lx){
+            JOptionPane.showMessageDialog(null, lx.getMessage(), "Error: " + lx.getCode(), JOptionPane.WARNING_MESSAGE);
+    			}
+        }
+        else{
+          JOptionPane.showMessageDialog(null, "Required fields must not be kept blank.", "Error: " + "Field Left Blank", JOptionPane.WARNING_MESSAGE);
+        }
       }
     }
 }

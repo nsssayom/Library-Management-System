@@ -66,7 +66,7 @@ public class GUI extends JFrame implements ActionListener{
 		topPanel = new TopPanel();
 		mainPanel.add(topPanel);
 
-		if(Global.ROLEID == 1){
+		if(Global.ROLEID == 4){
 			rightPanelUser = new RightPanelUser();
 			mainPanel.add(rightPanelUser);
 

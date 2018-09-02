@@ -117,6 +117,41 @@ public class RightPanelReg extends JPanel implements ActionListener{
     add(btnExit);
 
   }
-  public void actionPerformed(ActionEvent ae){}
+  public void actionPerformed(ActionEvent ae){
+    JButton pressedButton = (JButton) ae.getSource();
+
+    String name = nameTF.getText();
+    String ID = idTF.getText();
+    String email = emailTF.getText();
+    String phone = phoneTF.getText();
+    String address = addressTF.getText();
+
+    String userName = userNameTF.getText();
+    String password = new String(passPF2.getPassword());
+
+    if (pressedButton.getText() == "Sign up"){
+      System.out.println("Signup Button Pressed!");
+      System.out.println(name + " | " + ID);
+
+      if ( (name != null && !name.isEmpty())
+        && (ID != null && !ID.isEmpty())
+        && (email != null && !email.isEmpty())
+        && (phone != null && !phone.isEmpty())
+        && (address != null && !address.isEmpty())
+        && (userName != null && !userName.isEmpty())
+        && (password != null && !password.isEmpty())){
+        try{
+          Global.database.signUp(name, ID, email, phone, address, userName, password, "4");
+          JOptionPane.showMessageDialog(null, "Registration Completed! Now Login with your Username and Password.", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, ex.getMessage(), "Error: " + "SQL Error", JOptionPane.WARNING_MESSAGE);
+        }
+      }
+      else{
+        JOptionPane.showMessageDialog(null, "Required fields must not be kept blank.", "Error: " + "Field Left Blank", JOptionPane.WARNING_MESSAGE);
+      }
+    }
+  }
 
 }
