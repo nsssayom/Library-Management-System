@@ -15,22 +15,23 @@ import java.awt.*;
 
 public class TopPanelLogin extends JPanel implements ActionListener{
 
-    JLabel title, title1,colorLabel, userLabel, passLabel;
+    JLabel title, title1, userLabel, passLabel;
     JTextField userTF;
     JPasswordField passPF1;
     JButton btnLogin,  btnForgetPassword;
-    JCheckBox checkBox1;
 
     public TopPanelLogin(){
         super();
         setBounds(0, 0, 1280, 100);
         setLayout(null);
+        setOpaque(true);
+        setBackground(new Color(127,86,68));
 
         Font f1 = new Font("Cambria",Font.BOLD, 26);
         Font f2 = new Font("Cambria",Font.BOLD, 20);
         Font f3 = new Font("Cambria",Font.BOLD, 16);
 
-        title = new JLabel("Welcome to AIUB Library System");
+        title = new JLabel("Welcome to Softopian Library System");
         title.setForeground(Color.WHITE);
         title.setBounds(50, 20, 450, 30);
         title.setFont(f1);
@@ -72,18 +73,6 @@ public class TopPanelLogin extends JPanel implements ActionListener{
         btnForgetPassword.setForeground(Color.RED);
         btnForgetPassword.addActionListener(this);
         add(btnForgetPassword);
-
-        checkBox1= new JCheckBox("Remember me");
-        checkBox1.setOpaque(false);
-        checkBox1.setBounds(830, 65, 175, 20);
-        checkBox1.addActionListener(this);
-        add(checkBox1);
-
-        colorLabel = new JLabel();
-		    colorLabel.setBounds(0, 0, 1280, 100);
-        colorLabel.setBackground(new Color(127,86,68));
-		    colorLabel.setOpaque(true);
-        add(colorLabel);
     }
 
     public void actionPerformed(ActionEvent ae){
