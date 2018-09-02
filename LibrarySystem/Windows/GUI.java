@@ -91,8 +91,6 @@ public class GUI extends JFrame implements ActionListener{
 		this.repaint();
 	}
 
-
-
 	public void actionPerformed(ActionEvent ae){
 		String str = ae.getActionCommand();
 		if(str.equals(btnLogin.getText())){
