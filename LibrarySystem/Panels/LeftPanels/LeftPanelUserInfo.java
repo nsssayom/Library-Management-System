@@ -66,8 +66,6 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
         btnUpdateInfo.setBounds(150, 570, 150, 33);
         btnUpdateInfo.addActionListener(this);
         add(btnUpdateInfo);
-
-
   }
     public void actionPerformed(ActionEvent ae){}
 

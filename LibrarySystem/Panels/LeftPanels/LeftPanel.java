@@ -14,12 +14,12 @@ import java.sql.*;
 import java.awt.*;
 
 public class LeftPanel extends JPanel implements ActionListener{
-
   public LeftPanel(){
       super();
       setBounds(0, 0 , 900, 800);
       setLayout(null);
-
+      setOpaque(true);
+      setBackground(new Color(214,208,196));
     }
     public void actionPerformed(ActionEvent ae){}
 
