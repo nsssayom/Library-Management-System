@@ -36,7 +36,7 @@ public class MainClass{
 			//System.out.println(Crypto.SHA256("HHH").toUpperCase());
 			try{
 				//int res =
-				GUI.database.logIn("nsssayom", "011223344");
+				Global.database.logIn("nsssayom", "011223344");
 				//System.out.println("Login returns: " + res);
 			}
 			catch(LibraryException lx){

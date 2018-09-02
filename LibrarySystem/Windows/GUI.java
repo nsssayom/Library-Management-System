@@ -14,20 +14,22 @@ import java.sql.*;
 import java.awt.*;
 
 public class GUI extends JFrame implements ActionListener{
-	public static Database database = new Database("54.37.227.144", "my_library", "Library009", "library_database");
-
 	JButton btnLogin, btnExit;
   JPanel mainPanel;
+	ChangePassword ChangePassword;
+	UpdateBookInfo updateBookInfo;
+
 	LeftPanel leftPanel;
 	LeftPanelLogin leftPanelLogin;
 	LeftPanelUserInfo leftPanelUserInfo;
 	LeftPanelUserInfoUpdate leftPanelUserInfoUpdate;
+
 	RightPanelReg rightPanelReg;
 	RightPanelUser rightPanelUser;
   RightPanelEmployee rightPanelEmployee;
-	ChangePassword ChangePassword;
-	UpdateBookInfo updateBookInfo;
+
 	TopPanelLogin topPanelLogin;
+	TopPanel topPanel;
 
 	public GUI(){
 		//initiating the JFrame instance
@@ -56,20 +58,39 @@ public class GUI extends JFrame implements ActionListener{
 		this.add(mainPanel);
 	}
 
-/*public void mousePressed(MouseEvent me){}
-	public void mouseReleased(MouseEvent me){}
-	public void mouseEntered(MouseEvent me){}
-	public void mouseExited(MouseEvent me){}*/
+	public void showHome(){
+		mainPanel.removeAll();
+		mainPanel.revalidate();
+		mainPanel.repaint();
 
-public void actionPerformed(ActionEvent ae)
-	{
+		topPanel = new TopPanel();
+		mainPanel.add(topPanel);
+
+		if(Global.ROLEID == 1){
+			rightPanelUser = new RightPanelUser();
+			mainPanel.add(rightPanelUser);
+
+			leftPanelUserInfo = new LeftPanelUserInfo();
+			mainPanel.add(leftPanelUserInfo);
+		}
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
+
+
+	public void actionPerformed(ActionEvent ae){
 		String str = ae.getActionCommand();
-		if(str.equals(btnLogin.getText()))
-		{}
+		if(str.equals(btnLogin.getText())){
+
+		}
 		else if(str.equals(btnExit.getText()))
 		{
 			System.exit(0);
 		}
 		else{}
+		}
 	}
-}

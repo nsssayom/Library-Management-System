@@ -20,8 +20,8 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
 
   public LeftPanelUserInfo(){
       super();
-      //setBounds(0, 100 , 900, 800);
-      //setLayout(null);
+      setBounds(0, 0 , 900, 800);
+      setLayout(null);
 
       Font f2 = new Font("Cambria",Font.BOLD, 20);
       Font f4= new Font("Cambria",Font.BOLD, 17);

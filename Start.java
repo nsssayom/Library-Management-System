@@ -9,7 +9,7 @@ import java.lang.*;
 
 public class Start{
 	public static void main(String []args){
-		LibrarySystem.Windows.GUI  gui = new LibrarySystem.Windows.GUI();
-		gui.setVisible(true);
+		Global.gui = new GUI();
+		Global.gui.setVisible(true);
 	}
 }

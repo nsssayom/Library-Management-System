@@ -171,6 +171,7 @@ public void logIn(String userName, String password) throws LibraryException{
 				this.ps = null;
 				System.out.println("=>" + result);
 				accountID = result.getString("accountID");
+				Global.ACCOUNTID = Integer.parseInt(accountID);
 				System.out.println("Found User!");
 			}
 			else{
@@ -207,6 +208,7 @@ public void logIn(String userName, String password) throws LibraryException{
 			roleID = resultLogin.getString("roleID");
 			System.out.println(roleID);
 			roleIDInt = Integer.parseInt(roleID);
+			Global.ROLEID = roleIDInt;
 			System.out.println("User Role Found!");
 		}
 		else{
@@ -224,10 +226,6 @@ public void logIn(String userName, String password) throws LibraryException{
 		}
 	}
 }
-
-
-
-
 
 
 public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
