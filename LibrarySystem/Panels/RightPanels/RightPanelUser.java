@@ -16,31 +16,51 @@ import java.awt.*;
 
 public class RightPanelUser extends JPanel implements ActionListener{
 
-	JLabel myAccountLabel, btnMyInfo, borderLabel, colorLabelT1;
-	JButton  btnBorrowedBooks;
+JLabel colorLabelT1;
+JButton btnViewMyInfo, btnEditMyInfo, btnChangePass, btnBorrowedBooks, btnMyWishList, btnSendEmail;
 
 	public RightPanelUser(){
     super();
     setBounds(900, 100, 380, 800);
     setLayout(null);
 
-    Font f2 = new Font("Cambria",Font.BOLD, 20);
+		Font f4= new Font("Cambria",Font.BOLD, 17);
 
-    myAccountLabel = new JLabel("My Library Account");
-    myAccountLabel.setBounds(120, 63, 400, 40);
-    myAccountLabel.setFont(f2);
-    myAccountLabel.setOpaque(true);
-    add(myAccountLabel);
+    btnViewMyInfo = new JButton("View My informations");
+    btnViewMyInfo.setBounds(50, 50, 250, 50);
+		btnViewMyInfo.setFont(f4);
+  	//btnViewMyInfo.addActionListener(this);
+    add(btnViewMyInfo);
 
-    btnMyInfo = new JLabel("My informations");
-    btnMyInfo.setBounds(130, 170, 150, 40);
-  	//btnMyInfo.addActionListener(this);
-    add(btnMyInfo);
+	  btnEditMyInfo = new JButton("Edit My Information");
+	  btnEditMyInfo.setBounds(50, 120, 250, 50);
+		btnEditMyInfo.setFont(f4);
+		//btnEditMyInfo.addActionListener(this);
+		add(btnEditMyInfo);
 
-	  btnBorrowedBooks = new JButton("Borrowed books");
-	  btnBorrowedBooks.setBounds(130, 250, 150, 40);
-	  //btnBorrowedBooks.addActionListener(this);
+		btnChangePass = new JButton("Change Password");
+		btnChangePass.setBounds(50, 190, 250, 50);
+		btnChangePass.setFont(f4);
+		//btnChangePass.addActionListener(this);
+		add(btnChangePass);
+
+		btnBorrowedBooks = new JButton("Borrowed books");
+		btnBorrowedBooks.setBounds(50, 260, 250, 50);
+		btnBorrowedBooks.setFont(f4);
+		//btnBorrowedBooks.addActionListener(this);
 		add(btnBorrowedBooks);
+
+		btnMyWishList = new JButton("My WishList");
+		btnMyWishList.setBounds(50, 330, 250, 50);
+		btnMyWishList.setFont(f4);
+		//btnMyWishList.addActionListener(this);
+		add(btnMyWishList);
+
+		btnSendEmail = new JButton("Send E-mail");
+		btnSendEmail.setBounds(50, 400, 250, 50);
+		btnSendEmail.setFont(f4);
+		//btnSendEmail.addActionListener(this);
+		add(btnSendEmail);
 
 		colorLabelT1 = new JLabel();
     colorLabelT1.setBounds(900, 100, 380, 800);

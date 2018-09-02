@@ -85,4 +85,5 @@ public class UpdateBookInfo extends LeftPanel implements ActionListener{
   		add(btnDeleteBooks);
 
     }
+    public void actionPerformed(ActionEvent ae){}
   }

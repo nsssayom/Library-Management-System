@@ -16,7 +16,7 @@ import java.awt.*;
 public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
 
  JLabel userInfoMyInfoLabel, userInfoNameLabel, userInfoIdLabel, userINfoEmailLabel, userInfoPhoneLabel, userInfoAddressLabel, userInfoUserNameLabel;
- JButton btnUpdateInfo;
+ JLabel nameData,idData,emailData,phoneData,addressData,userNameData;
 
   public LeftPanelUserInfo(){
       super();
@@ -25,6 +25,7 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
 
       Font f2 = new Font("Cambria",Font.BOLD, 20);
       Font f4= new Font("Cambria",Font.BOLD, 17);
+      Font f6= new Font("Cambria",Font.PLAIN, 17);
 
       userInfoMyInfoLabel = new JLabel("My Information");
       userInfoMyInfoLabel.setBounds(140, 180,150, 30);
@@ -62,10 +63,36 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
       userInfoUserNameLabel.setFont(f4);
       add(userInfoUserNameLabel);
 
-        btnUpdateInfo = new JButton("Update Information");
-        btnUpdateInfo.setBounds(150, 570, 150, 33);
-        btnUpdateInfo.addActionListener(this);
-        add(btnUpdateInfo);
+      nameData = new JLabel("...");
+      nameData.setBounds(300, 250, 50, 30);
+      nameData.setFont(f6);
+      add(nameData);
+
+      idData = new JLabel("...");
+      idData.setBounds(300, 300, 50, 30);
+      idData.setFont(f6);
+      add(idData);
+
+      emailData = new JLabel("...");
+      emailData.setBounds(300, 350, 80, 30);
+      emailData.setFont(f6);
+      add(emailData);
+
+      phoneData = new JLabel("...");
+      phoneData.setBounds(300, 400, 100, 30);
+      phoneData.setFont(f6);
+      add(phoneData);
+
+      addressData = new JLabel("...");
+      addressData.setBounds(300, 450, 100, 30);
+      addressData.setFont(f6);
+      add(addressData);
+
+      userNameData = new JLabel("...");
+      userNameData.setBounds(300, 500, 100, 30);
+      userNameData.setFont(f6);
+      add(userNameData);
+
   }
     public void actionPerformed(ActionEvent ae){}
 
