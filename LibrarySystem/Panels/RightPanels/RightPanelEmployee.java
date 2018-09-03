@@ -15,7 +15,7 @@ import java.awt.*;
 
 public class RightPanelEmployee extends JPanel implements ActionListener{
 
-JButton btnViewMyInfo, btnEditMyInfo, btnViewUserInfo, btnViewEmployeeInfo, btnAddNewEmployee ;
+JButton btnViewMyInfo,btnEditMyInfo,btnViewUserInfo,btnViewEmployeeInfo,btnAddNewEmployee ;
 JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
 
 	public RightPanelEmployee(){

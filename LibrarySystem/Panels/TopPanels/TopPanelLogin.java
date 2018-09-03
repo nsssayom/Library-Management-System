@@ -18,7 +18,7 @@ public class TopPanelLogin extends JPanel implements ActionListener{
     JLabel title, title1, userLabel, passLabel;
     JTextField userTF;
     JPasswordField passPF1;
-    JButton btnLogin,  btnForgetPassword;
+    JButton btnLogin;
 
     public TopPanelLogin(){
         super();
@@ -45,34 +45,29 @@ public class TopPanelLogin extends JPanel implements ActionListener{
 
         userLabel = new JLabel("Username");
         userLabel.setForeground(Color.WHITE);
-        userLabel.setBounds(746, 25, 100, 30);
+        userLabel.setBounds(746, 40, 100, 30);
         userLabel.setFont(f3);
         add(userLabel);
 
         userTF = new JTextField();
-        userTF.setBounds(830, 25, 128, 30);
+        userTF.setBounds(830, 40, 128, 30);
         add(userTF);
 
         passLabel = new JLabel("Password");
-        passLabel.setBounds(970, 25, 100, 30);
+        passLabel.setBounds(970, 40, 100, 30);
         passLabel.setFont(f3);
         passLabel.setForeground(Color.WHITE);
         add(passLabel);
 
         passPF1 = new JPasswordField();
-        passPF1.setBounds(1045,25,120,30);
+        passPF1.setBounds(1045,40,120,30);
         add(passPF1);
 
         btnLogin = new JButton("Login");
-        btnLogin.setBounds(1170, 25, 70, 30);
+        btnLogin.setBounds(1170, 40, 70, 30);
         btnLogin.addActionListener(this);
         add(btnLogin);
 
-        btnForgetPassword = new JButton("Forgot password?");
-        btnForgetPassword.setBounds(1045, 65, 195, 20);
-        btnForgetPassword.setForeground(Color.RED);
-        btnForgetPassword.addActionListener(this);
-        add(btnForgetPassword);
     }
 
     public void actionPerformed(ActionEvent ae){

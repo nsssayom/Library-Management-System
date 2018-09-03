@@ -28,7 +28,7 @@ public class LeftPanelUserInfoUpdate extends LeftPanel implements ActionListener
       Font f2 = new Font("Cambria",Font.BOLD, 20);
       Font f4= new Font("Cambria",Font.BOLD, 17);
 
-      updateMyInfoLabel = new JLabel("Update Information");
+      updateMyInfoLabel = new JLabel("Edit Information");
       updateMyInfoLabel.setBounds(140, 160,200, 30);
       updateMyInfoLabel.setForeground(Color.RED);
       updateMyInfoLabel.setFont(f2);
