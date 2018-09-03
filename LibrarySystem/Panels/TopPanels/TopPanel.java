@@ -63,12 +63,6 @@ public class TopPanel extends JPanel implements ActionListener{
       btnLogOut.addActionListener(this);
       add(btnLogOut);
 
-
-  /*  titleT1 = new JLabel("Softopian Library System");
-    titleT1.setForeground(Color.WHITE);
-    titleT1.setBounds(800, 20, 450, 30);
-    titleT1.setFont(f4);
-    add(titleT1);*/
   }
   public void actionPerformed(ActionEvent ae){}
 }

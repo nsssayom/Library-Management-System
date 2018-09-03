@@ -84,7 +84,8 @@ public class GUI extends JFrame implements ActionListener{
 											"publication Year", "Shelf", "Quantity"};
 
 		try{
-			Object[][] rawData = Global.database.readBookList();
+			//Object[][] rawData = Global.database.readBookList();
+			Object[][] rawData = Global.database.search("bookTitle", "is");
 			tablePanel = new TablePanel(index, rawData);
 			mainPanel.add(tablePanel);
 		}
