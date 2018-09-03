@@ -68,6 +68,7 @@ public class TopPanel extends JPanel implements ActionListener{
       imgLabel2 = new JLabel(img);
       imgLabel2.setBounds(23, 22, 60, 60);
       add(imgLabel2);
+    }
 
   public void actionPerformed(ActionEvent ae){
     JButton pressedButton = (JButton) ae.getSource();
