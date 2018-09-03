@@ -84,8 +84,8 @@ public class GUI extends JFrame implements ActionListener{
 											"publication Year", "Shelf", "Quantity"};
 
 		try{
-			//Object[][] rawData = Global.database.readBookList();
-			Object[][] rawData = Global.database.search("bookTitle", "is");
+			Object[][] rawData = Global.database.readBookList();
+			//Object[][] rawData = Global.database.search("bookTitle", "is");
 			tablePanel = new TablePanel(index, rawData);
 			mainPanel.add(tablePanel);
 		}
@@ -98,6 +98,37 @@ public class GUI extends JFrame implements ActionListener{
 		this.revalidate();
 		this.repaint();
 	}
+
+	public void showSearch(String Dataset, String KeyWord){
+		Component[] components = mainPanel.getComponents();
+		for (int i = 0; i < components.length; i++){
+			if((components[i].getClass().getSuperclass().getName()) == "LibrarySystem.Panels.LeftPanels.LeftPanel"){
+				mainPanel.remove(components[i]);
+			}
+		}
+		mainPanel.revalidate();
+		mainPanel.repaint();
+
+		String [] index;
+		index= new String[]{"ID", "Book Title", "Author Name",
+											"publication Year", "Shelf", "Quantity"};
+
+		try{
+			Object[][] rawData = Global.database.search(Dataset, KeyWord);
+			tablePanel = new TablePanel(index, rawData);
+			mainPanel.add(tablePanel);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
+
 
 	public void actionPerformed(ActionEvent ae){
 		String str = ae.getActionCommand();

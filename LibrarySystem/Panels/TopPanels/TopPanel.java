@@ -64,5 +64,23 @@ public class TopPanel extends JPanel implements ActionListener{
       add(btnLogOut);
 
   }
-  public void actionPerformed(ActionEvent ae){}
+  public void actionPerformed(ActionEvent ae){
+    JButton pressedButton = (JButton) ae.getSource();
+    String dataSet = searchCB.getSelectedItem().toString();
+    String keyWord = searchTF.getText();
+    if ((pressedButton.getText().equals("Search")) && (keyWord != null && !keyWord.isEmpty())){
+      if (dataSet.equals("Book")){
+        Global.gui.showSearch("bookTitle", keyWord);
+      }
+      else if (dataSet.equals("Author")){
+        Global.gui.showSearch("authorName", keyWord);
+      }
+      else if(dataSet.equals("ISBN")){
+        Global.gui.showSearch("ISBN", keyWord);
+      }
+    }
+    else{
+      JOptionPane.showMessageDialog(null, "Can not search empty string.", "Nothing to Search: ", JOptionPane.WARNING_MESSAGE);
+    }
+  }
 }
