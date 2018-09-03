@@ -13,6 +13,8 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class GUI extends JFrame implements ActionListener{
 	JButton btnLogin, btnExit;
@@ -75,14 +77,19 @@ public class GUI extends JFrame implements ActionListener{
 
 			//leftPanelUserInfo = new LeftPanelUserInfo();
 			//mainPanel.add(leftPanelUserInfo);
-			String [] index;
-			index= new String[]{"Rank", "Country", "GDP(millions of US$)"};
-			Object[][] rawData = new Object[] [] {
-										{"1", "USA", "$19.42 Trillion"},
-										{"2", "China","$11.8 Trillion"}
-										};
+		}
+
+		String [] index;
+		index= new String[]{"ID", "Book Title", "Author Name",
+											"publication Year", "Shelf", "Quantity"};
+
+		try{
+			Object[][] rawData = Global.database.readBookList();
 			tablePanel = new TablePanel(index, rawData);
 			mainPanel.add(tablePanel);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
 		}
 
 		mainPanel.revalidate();

@@ -18,7 +18,7 @@ import javax.swing.table.*;
 public class TablePanel extends LeftPanel implements ActionListener{
   JTable table;
   DefaultTableModel dTableModel;
-  Font f2 = new Font("Cambria",Font.PLAIN, 20);
+  Font f2 = new Font("Courier",Font.PLAIN, 16);
 
   public TablePanel(String[] header, Object[][] rawData){
     super();
@@ -41,13 +41,10 @@ public class TablePanel extends LeftPanel implements ActionListener{
       JOptionPane.showMessageDialog(null, "Table creation failed.", "Error: ", JOptionPane.WARNING_MESSAGE);
     }
     try{
-      table.getColumn("Rank").setMaxWidth(30);
-      table.getColumn("ID").setMaxWidth(30);
-      table.getColumn("Name").setMaxWidth(200);
-      table.getColumn("Book Title").setMaxWidth(200);
+      table.getColumn("ID").setMaxWidth(20);
     }
     catch(Exception ex){
-
+      //ex.printStackTrace();
     }
 
     JScrollPane js=new JScrollPane(table);

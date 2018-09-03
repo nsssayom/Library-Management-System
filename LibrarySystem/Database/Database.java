@@ -9,6 +9,8 @@ import LibrarySystem.Panels.TopPanels.*;
 
 import java.sql.*;
 import java.lang.*;
+import java.util.List;
+import java.util.*;
 
 public class Database{
 	private String dbHost;
@@ -236,9 +238,6 @@ public void logIn(String userName, String password) throws LibraryException{
 		}
 	}
 
-
-
-
 	//prepare statement and execute sql to find user Details
 	try{
 		this.ps = this.con.prepareStatement(peopleQuery);
@@ -301,5 +300,67 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 				this.closeConnection();
 			}
 			return false;
+	}
+
+	public Object[][] readBookList() throws LibraryException{
+		String bookQuery = "SELECT * FROM books WHERE " + " isDeleted = 0 ORDER BY popularity DESC;";
+		this.connectDatabase();
+		ResultSet result;
+		Object[][] resultArray = null;
+		List<List<String>> bookList = new ArrayList<List<String>>();
+		int rowCount = 0;
+
+		//run query to get books
+		try{
+			this.ps = this.con.prepareStatement(bookQuery);
+			System.out.println(ps);
+			result = this.runQuery(ps);
+		}
+		catch(Exception ex){
+			throw new LibraryException ("SQL Error", 301);
+		}
+
+		//extracting SQL return to Object[][]
+		try{
+				int cnt = 0;
+				while(result.next()){
+					List<String> bookDetail = new ArrayList<String>();
+					bookDetail.add(result.getString("bookID"));
+					bookDetail.add(result.getString("bookTitle"));
+					bookDetail.add(result.getString("authorName"));
+					bookDetail.add(result.getString("publicationYear"));
+					bookDetail.add(result.getString("shelf"));
+					bookDetail.add(result.getString("availableQuantity"));
+					bookList.add(bookDetail);
+					System.out.println(Arrays.deepToString(bookDetail.toArray()));
+				}
+				System.out.println("Data Extraction completed: ");
+				rowCount = bookList.size();
+				System.out.println(Arrays.deepToString(bookList.toArray()));
+
+				resultArray = new Object[rowCount][6];
+				try{
+					for(int i = 0; i < rowCount; i++){
+						for(int j = 0; j < 6; j++){
+							resultArray[i][j] = bookList.get(i).get(j);
+						}
+					}
+						//bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
+					}
+					catch(Exception ex){
+						System.out.println("Error exporting result to an array");
+					}
+		}
+		catch(Exception ex){
+			if (!(ex instanceof LibraryException)){
+				throw new LibraryException("SQL Error", 301);
+			}
+			else{
+				throw new LibraryException("No Data found", 205);
+			}
+		}
+		finally{
+			return resultArray;
+		}
 	}
 }
