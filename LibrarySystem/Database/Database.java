@@ -528,4 +528,79 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						return false;
 					}
 			}
+
+		public Object[][] readUserInfo(int mode) throws LibraryException{
+				//mode == 0 : User
+				//mode == 1: Employee
+				String peopleQuery = "";
+
+				if (mode == 0){
+					peopleQuery = "SELECT name, phoneNumber, email, address FROM people, userAccount " +
+												"WHERE people.peopleID = userAccount.peopleID AND userAccount.roleID = 4 AND " +
+												"userAccount.isDeleted = 0 ORDER BY people.name ASC;";
+				}
+				else{
+					peopleQuery = "SELECT name, phoneNumber, email, address FROM people, userAccount " +
+												"WHERE people.peopleID = userAccount.peopleID AND userAccount.roleID < 4 AND " +
+												"userAccount.isDeleted = 0 ORDER BY people.name ASC;";
+				}
+
+				this.connectDatabase();
+				ResultSet result;
+				Object[][] resultArray = null;
+				List<List<String>> bookList = new ArrayList<List<String>>();
+				int rowCount = 0;
+
+				//run query to get books
+				try{
+					this.ps = this.con.prepareStatement(peopleQuery);
+					System.out.println(ps);
+					result = this.runQuery(ps);
+				}
+				catch(Exception ex){
+					throw new LibraryException ("SQL Error", 301);
+				}
+
+				//extracting SQL return to Object[][]
+				try{
+						int cnt = 0;
+						while(result.next()){
+							List<String> bookDetail = new ArrayList<String>();
+							bookDetail.add(result.getString("name"));
+							bookDetail.add(result.getString("phoneNumber"));
+							bookDetail.add(result.getString("email"));
+							bookDetail.add(result.getString("address"));
+							bookList.add(bookDetail);
+							System.out.println(Arrays.deepToString(bookDetail.toArray()));
+						}
+						System.out.println("Data Extraction completed: ");
+						rowCount = bookList.size();
+						System.out.println(Arrays.deepToString(bookList.toArray()));
+
+						resultArray = new Object[rowCount][4];
+						try{
+							for(int i = 0; i < rowCount; i++){
+								for(int j = 0; j < 4; j++){
+									resultArray[i][j] = bookList.get(i).get(j);
+								}
+							}
+								//bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
+						}
+						catch(Exception ex){
+								System.out.println("Error exporting result to an array");
+						}
+				}
+				catch(Exception ex){
+					if (!(ex instanceof LibraryException)){
+						throw new LibraryException("SQL Error", 301);
+					}
+					else{
+						throw new LibraryException("No Data found", 205);
+					}
+				}
+				finally{
+					return resultArray;
+				}
+			}
+
 }

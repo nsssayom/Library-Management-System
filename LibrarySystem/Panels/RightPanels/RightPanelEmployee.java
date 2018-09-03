@@ -48,26 +48,45 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
 							    }
 							});
 
-
     btnViewUserInfo = new JButton("View User Information");
     btnViewUserInfo.setBounds(50, 150, 250, 30);
     btnViewUserInfo.setFont(f4);
     add(btnViewUserInfo);
+		btnViewUserInfo.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+							        Global.gui.viewUserInfo(0);
+							    }
+							});
 
     btnViewEmployeeInfo = new JButton("View Employee Information");
     btnViewEmployeeInfo.setBounds(50,200 , 250, 30);
     btnViewEmployeeInfo.setFont(f4);
+		if (Global.ROLEID > 2){btnViewEmployeeInfo.setEnabled(false);}
     add(btnViewEmployeeInfo);
+		btnViewEmployeeInfo.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+							        Global.gui.viewUserInfo(1);
+							    }
+							});
 
     btnAddNewEmployee = new JButton("Add New Employee");
     btnAddNewEmployee.setBounds(50, 250, 250, 30);
     btnAddNewEmployee.setFont(f4);
+		if (Global.ROLEID > 2){btnAddNewEmployee.setEnabled(false);}
     add(btnAddNewEmployee);
 
 		btnAddNewBook = new JButton("Add New Book");
     btnAddNewBook.setBounds(50, 300, 250, 30);
     btnAddNewBook.setFont(f4);
     add(btnAddNewBook);
+		btnAddNewBook.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+							        Global.gui.viewUserInfo(1);
+							    }
+							});
 
     btnIssueBook = new JButton("Issue Book");
     btnIssueBook.setBounds(50, 350, 250, 30);

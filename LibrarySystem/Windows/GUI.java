@@ -182,13 +182,33 @@ public void clearLeftPanel(){
 		this.repaint();
 	}
 
+	public void viewUserInfo(int mode){
+		this.clearLeftPanel();
+
+		String [] index;
+		index= new String[]{"Name", "Phone", "Email", "Address"};
+
+		try{
+			Object[][] rawData = Global.database.readUserInfo(mode);
+			tablePanel = new TablePanel(index, rawData);
+			mainPanel.add(tablePanel);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
 	public void actionPerformed(ActionEvent ae){
 		String str = ae.getActionCommand();
 		if(str.equals(btnLogin.getText())){
 
 		}
-		else if(str.equals(btnExit.getText()))
-		{
+		else if(str.equals(btnExit.getText())){
 			System.exit(0);
 		}
 		else{}
