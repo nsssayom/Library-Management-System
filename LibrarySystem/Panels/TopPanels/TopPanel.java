@@ -15,7 +15,8 @@ import java.awt.*;
 
 public class TopPanel extends JPanel implements ActionListener{
 
-  JLabel titleT1, user, role;
+  JLabel titleT1, user, role, imgLabel2;
+  ImageIcon img;
   JTextField searchTF;
   JButton btnLogOut, btnSearch;
   JComboBox searchCB;
@@ -62,6 +63,11 @@ public class TopPanel extends JPanel implements ActionListener{
       btnLogOut.setFont(f5);
       btnLogOut.addActionListener(this);
       add(btnLogOut);
+
+      img = new ImageIcon("pic2.jpg");
+      imgLabel2 = new JLabel(img);
+      imgLabel2.setBounds(23, 22, 60, 60);
+      add(imgLabel2);
 
 
   /*  titleT1 = new JLabel("Softopian Library System");
