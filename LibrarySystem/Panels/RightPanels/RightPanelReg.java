@@ -152,6 +152,9 @@ public class RightPanelReg extends JPanel implements ActionListener{
         JOptionPane.showMessageDialog(null, "Required fields must not be kept blank.", "Error: " + "Field Left Blank", JOptionPane.WARNING_MESSAGE);
       }
     }
+    else if (pressedButton.getText() == "Exit"){
+      System.exit(0);
+    }
   }
 
 }
