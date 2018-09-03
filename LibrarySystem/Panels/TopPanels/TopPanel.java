@@ -64,21 +64,11 @@ public class TopPanel extends JPanel implements ActionListener{
       btnLogOut.addActionListener(this);
       add(btnLogOut);
 
-<<<<<<< HEAD
       img = new ImageIcon("pic2.jpg");
       imgLabel2 = new JLabel(img);
       imgLabel2.setBounds(23, 22, 60, 60);
       add(imgLabel2);
 
-
-  /*  titleT1 = new JLabel("Softopian Library System");
-    titleT1.setForeground(Color.WHITE);
-    titleT1.setBounds(800, 20, 450, 30);
-    titleT1.setFont(f4);
-    add(titleT1);*/
-=======
->>>>>>> d4927db021aaa542f6fff12645f6f3aefae1395d
-  }
   public void actionPerformed(ActionEvent ae){
     JButton pressedButton = (JButton) ae.getSource();
     String dataSet = searchCB.getSelectedItem().toString();
