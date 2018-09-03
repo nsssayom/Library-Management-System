@@ -28,7 +28,7 @@ public class TopPanel extends JPanel implements ActionListener{
     setOpaque(true);
     setBackground(new Color(127,86,68));
 
-    Font f2 = new Font("Cambria",Font.BOLD, 20);
+    Font f2 = new Font("Cambria",Font.BOLD, 15);
     Font f5 = new Font("Cambria",Font.BOLD, 15);
 
     searchTF = new JTextField();
@@ -46,15 +46,15 @@ public class TopPanel extends JPanel implements ActionListener{
 		searchCB.setBounds(620, 30, 150, 35);
   	add(searchCB);
 
-      user = new JLabel("User");
+      user = new JLabel(Global.NAME);
       user.setForeground(Color.WHITE);
-      user.setBounds(1045,25,120,30);
+      user.setBounds(950,25,200,30);
       user.setFont(f2);
       add(user);
 
-      role = new JLabel("Role");
+      role = new JLabel(Global.getRole());
       role.setForeground(Color.WHITE);
-      role.setBounds(1045,55,120,30);
+      role.setBounds(950,50,120,30);
       role.setFont(f2);
       add(role);
 
@@ -83,6 +83,15 @@ public class TopPanel extends JPanel implements ActionListener{
       }
       else if(dataSet.equals("ISBN")){
         Global.gui.showSearch("ISBN", keyWord);
+      }
+    }
+    else if (pressedButton.getText().equals("Log Out")){
+      try{
+        Global.gui.showLoginScreen();
+        JOptionPane.showMessageDialog(null, "You have successfully logged out.", "Good Bye!", JOptionPane.WARNING_MESSAGE);
+      }
+      catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Can not log out!", "Error", JOptionPane.WARNING_MESSAGE);
       }
     }
     else{

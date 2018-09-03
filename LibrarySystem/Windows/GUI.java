@@ -42,10 +42,20 @@ public class GUI extends JFrame implements ActionListener{
   	this.setSize(1280, 730);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
-
 		//initiating mainPanel to hold other panels
 		mainPanel = new JPanel();
 		mainPanel.setLayout(null);
+		this.showLoginScreen();
+	}
+
+	public void showLoginScreen(){
+
+		try{
+			mainPanel.removeAll();
+			mainPanel.revalidate();
+			mainPanel.repaint();
+		}
+		catch(Exception ex){}
 
 		//initiating topPanelLogin instance and adding to mainPanel
 		topPanelLogin= new TopPanelLogin();
@@ -61,6 +71,8 @@ public class GUI extends JFrame implements ActionListener{
 
 		//adding mainpanel to the JFrame instance
 		this.add(mainPanel);
+		mainPanel.revalidate();
+		mainPanel.repaint();
 	}
 
 	public void showHome(){

@@ -22,6 +22,7 @@ public class TablePanel extends LeftPanel implements ActionListener{
 
   public TablePanel(String[] header, Object[][] rawData){
     super();
+    setBackground(new Color(214,208,196));
     setLayout(null);
     setBounds(0, 100, 900, 800);
     try{
@@ -36,12 +37,16 @@ public class TablePanel extends LeftPanel implements ActionListener{
       //table.setFillsViewportHeight(true);
       //table.setBounds(0, 0, 900, 800);
       table.setFont(f2);
+      table.setBackground(new Color(214,208,196));
     }
     catch(Exception ex){
       JOptionPane.showMessageDialog(null, "Table creation failed.", "Error: ", JOptionPane.WARNING_MESSAGE);
     }
     try{
       table.getColumn("ID").setMaxWidth(20);
+      table.getColumn("Book Title").setMinWidth(300);
+      table.getColumn("Shelf").setMaxWidth(50);
+      table.getColumn("Quantity").setMaxWidth(60);
     }
     catch(Exception ex){
       //ex.printStackTrace();
