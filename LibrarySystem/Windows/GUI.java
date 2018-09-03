@@ -19,13 +19,13 @@ import java.util.List;
 public class GUI extends JFrame implements ActionListener{
 	JButton btnLogin, btnExit;
   JPanel mainPanel;
-	ChangePassword ChangePassword;
 	UpdateBookInfo updateBookInfo;
 
 	LeftPanel leftPanel;
 	LeftPanelLogin leftPanelLogin;
 	LeftPanelUserInfo leftPanelUserInfo;
 	LeftPanelUserInfoUpdate leftPanelUserInfoUpdate;
+	LeftPanelChangePassword leftPanelChangePassword;
 
 	RightPanelReg rightPanelReg;
 	RightPanelUser rightPanelUser;
@@ -86,9 +86,10 @@ public class GUI extends JFrame implements ActionListener{
 		if(Global.ROLEID == 4){
 			rightPanelUser = new RightPanelUser();
 			mainPanel.add(rightPanelUser);
-
-			//leftPanelUserInfo = new LeftPanelUserInfo();
-			//mainPanel.add(leftPanelUserInfo);
+		}
+		else{
+			rightPanelEmployee = new RightPanelEmployee();
+			mainPanel.add(rightPanelEmployee);
 		}
 
 		String [] index;
@@ -111,16 +112,20 @@ public class GUI extends JFrame implements ActionListener{
 		this.repaint();
 	}
 
-	public void showSearch(String Dataset, String KeyWord){
-		Component[] components = mainPanel.getComponents();
-		for (int i = 0; i < components.length; i++){
-			if((components[i].getClass().getSuperclass().getName()) == "LibrarySystem.Panels.LeftPanels.LeftPanel"){
-				mainPanel.remove(components[i]);
-			}
+
+public void clearLeftPanel(){
+	Component[] components = mainPanel.getComponents();
+	for (int i = 0; i < components.length; i++){
+		if((components[i].getClass().getSuperclass().getName()) == "LibrarySystem.Panels.LeftPanels.LeftPanel"){
+			mainPanel.remove(components[i]);
 		}
+	}
 		mainPanel.revalidate();
 		mainPanel.repaint();
+	}
 
+	public void showSearch(String Dataset, String KeyWord){
+		this.clearLeftPanel();
 		String [] index;
 		index= new String[]{"ID", "Book Title", "Author Name",
 											"publication Year", "Shelf", "Quantity"};
@@ -140,7 +145,42 @@ public class GUI extends JFrame implements ActionListener{
 		this.repaint();
 	}
 
+	public void viewSelfInformation(){
+		this.clearLeftPanel();
 
+		leftPanelUserInfo = new LeftPanelUserInfo();
+		mainPanel.add(leftPanelUserInfo);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
+
+	public void editSelfInformation(){
+		this.clearLeftPanel();
+
+		leftPanelUserInfoUpdate = new LeftPanelUserInfoUpdate();
+		mainPanel.add(leftPanelUserInfoUpdate);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void changePassword(){
+		this.clearLeftPanel();
+
+		leftPanelChangePassword = new LeftPanelChangePassword();
+		mainPanel.add(leftPanelChangePassword);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
 
 	public void actionPerformed(ActionEvent ae){
 		String str = ae.getActionCommand();

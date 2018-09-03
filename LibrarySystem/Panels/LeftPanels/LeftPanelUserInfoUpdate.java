@@ -16,7 +16,7 @@ import java.awt.*;
 public class LeftPanelUserInfoUpdate extends LeftPanel implements ActionListener{
 
  JLabel updateMyInfoLabel, updateNameLabel, updateIdLabel, updateEmailLabel, updatePhoneLabel, updateAddressLabel, updateUserNameLabel;
- JButton btnDeleteAccount,btnChangePass, btnLogOut;
+ JButton btnSaveChanges;
  JTextField  updateNameTF, updateIdTF, updateEmailTF, updatePhoneTF, updateAddressTF,updateUserNameTF;
 
   public LeftPanelUserInfoUpdate(){
@@ -39,73 +39,65 @@ public class LeftPanelUserInfoUpdate extends LeftPanel implements ActionListener
       updateNameLabel.setFont(f4);
       add(updateNameLabel);
 
-      updateIdLabel = new JLabel("ID:");
-      updateIdLabel.setBounds(150, 280, 50, 30);
-      updateIdLabel.setFont(f4);
-      add(updateIdLabel);
-
       updateEmailLabel = new JLabel("E-mail:");
-      updateEmailLabel.setBounds(150, 330, 80, 30);
+      updateEmailLabel.setBounds(150, 280, 80, 30);
       updateEmailLabel.setFont(f4);
       add(updateEmailLabel);
 
       updatePhoneLabel = new JLabel("Phone no:");
-      updatePhoneLabel.setBounds(150, 380, 100, 30);
+      updatePhoneLabel.setBounds(150, 330, 100, 30);
       updatePhoneLabel.setFont(f4);
       add(updatePhoneLabel);
 
       updateAddressLabel = new JLabel("Address:");
-      updateAddressLabel.setBounds(150, 430, 100, 30);
+      updateAddressLabel.setBounds(150, 380, 100, 30);
       updateAddressLabel.setFont(f4);
       add(updateAddressLabel);
 
       updateUserNameLabel = new JLabel("User name:");
-      updateUserNameLabel.setBounds(150, 480, 100, 30);
+      updateUserNameLabel.setBounds(150, 460, 100, 30);
       updateUserNameLabel.setFont(f4);
       add(updateUserNameLabel);
 
-      updateNameTF = new JTextField();
+      updateNameTF = new JTextField(Global.NAME);
       updateNameTF.setBounds(260, 230, 190, 30);
       add(updateNameTF);
 
-      updateIdTF = new JTextField();
-      updateIdTF.setBounds(260, 280, 190, 30);
-      add(updateIdTF);
-
-      updateEmailTF = new JTextField();
-      updateEmailTF.setBounds(260, 330, 190, 30);
+      updateEmailTF = new JTextField(Global.EMAIL);
+      updateEmailTF.setBounds(260, 280, 190, 30);
       add(updateEmailTF);
 
-      updatePhoneTF = new JTextField();
-      updatePhoneTF.setBounds(260, 380, 190, 30);
+      updatePhoneTF = new JTextField(Global.PHONE);
+      updatePhoneTF.setBounds(260, 330, 190, 30);
       add(updatePhoneTF);
 
-      updateAddressTF = new JTextField();
-      updateAddressTF.setBounds(260, 430, 190, 30);
+      updateAddressTF = new JTextField(Global.ADDRESS);
+      updateAddressTF.setBounds(260, 380, 190, 30);
       add(updateAddressTF);
 
-      updateUserNameTF = new JTextField();
-      updateUserNameTF.setBounds(260, 480, 190, 30);
+      updateUserNameTF = new JTextField(Global.USERNAME);
+      updateUserNameTF.setBounds(260, 460, 190, 30);
+      updateUserNameTF.setEditable(false);
       add(updateUserNameTF);
 
-      btnChangePass = new JButton("Change Password ");
-      btnChangePass.setBounds(140, 540, 150, 33);
-      btnChangePass.addActionListener(this);
-      add(btnChangePass);
-
-      btnDeleteAccount = new JButton("Delete Account ");
-      btnDeleteAccount.setBounds(140, 605, 150, 33);
-      btnDeleteAccount.setForeground(Color.RED);
-      btnDeleteAccount.addActionListener(this);
-      add(btnDeleteAccount);
-
-      btnLogOut = new JButton("Log Out ");
-      btnLogOut.setBounds(300, 605, 150, 33);
-      btnLogOut.addActionListener(this);
-      add(btnLogOut);
-
+      btnSaveChanges = new JButton("Save Changes");
+      btnSaveChanges.setBounds(140, 540, 150, 33);
+      btnSaveChanges.setForeground(new Color(0, 108, 50));
+      btnSaveChanges.addActionListener(this);
+      add(btnSaveChanges);
 
   }
-    public void actionPerformed(ActionEvent ae){}
+    public void actionPerformed(ActionEvent ae){
+      JButton pressedButton = (JButton) ae.getSource();
 
+      String name = updateNameTF.getText();
+      String email = updateEmailTF.getText();
+      String phone = updatePhoneTF.getText();
+      String address = updateAddressTF.getText();
+
+  		if (pressedButton.getText().equals("Save Changes")){
+  				Global.database.updateSelfInfo(name, phone, email, address);
+          JOptionPane.showMessageDialog(null, "Your informations have been updated.", "Success", JOptionPane.INFORMATION_MESSAGE);
+  		}
+    }
 }

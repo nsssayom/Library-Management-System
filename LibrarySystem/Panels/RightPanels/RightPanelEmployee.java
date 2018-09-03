@@ -13,7 +13,7 @@ import java.awt.event.*;
 import java.sql.*;
 import java.awt.*;
 
-public class RightPanelEmployee extends JPanel implements ActionListener{
+public class RightPanelEmployee extends JPanel{
 
 JButton btnViewMyInfo,btnEditMyInfo,btnViewUserInfo,btnViewEmployeeInfo,btnAddNewEmployee ;
 JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
@@ -24,17 +24,30 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
     setBounds(900, 100, 380, 800);
     setLayout(null);
 
-    Font f4= new Font("Cambria",Font.BOLD, 17);
+    Font f4= new Font("Cambria",Font.BOLD, 16);
 
-		btnViewMyInfo = new JButton("view My Account");
+		btnViewMyInfo = new JButton("View My Account");
 		btnViewMyInfo.setBounds(50, 50, 250, 30);
 		btnViewMyInfo.setFont(f4);
 		add(btnViewMyInfo);
+		btnViewMyInfo.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+							        Global.gui.viewSelfInformation();
+							    }
+							});
 
     btnEditMyInfo = new JButton("Edit My Information");
     btnEditMyInfo.setBounds(50, 100, 250, 30);
     btnEditMyInfo.setFont(f4);
     add(btnEditMyInfo);
+		btnEditMyInfo.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+							        Global.gui.editSelfInformation();
+							    }
+							});
+
 
     btnViewUserInfo = new JButton("View User Information");
     btnViewUserInfo.setBounds(50, 150, 250, 30);
@@ -71,7 +84,4 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
     btnUpdateBookInfo.setFont(f4);
     add(btnUpdateBookInfo);
   }
-
-  public void actionPerformed(ActionEvent ae){}
-
 }

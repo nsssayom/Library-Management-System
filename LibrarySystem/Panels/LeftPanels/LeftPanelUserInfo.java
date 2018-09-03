@@ -26,7 +26,7 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
 
       Font f2 = new Font("Cambria",Font.BOLD, 20);
       Font f4= new Font("Cambria",Font.BOLD, 17);
-      Font f6= new Font("Cambria",Font.PLAIN, 17);
+      Font f6= new Font("Cambria",Font.PLAIN, 18);
 
       userInfoMyInfoLabel = new JLabel("My Information");
       userInfoMyInfoLabel.setBounds(140, 180,150, 30);
@@ -39,58 +39,58 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
       userInfoNameLabel.setFont(f4);
       add(userInfoNameLabel);
 
-      userInfoIdLabel = new JLabel("ID:");
-      userInfoIdLabel.setBounds(150, 300, 50, 30);
-      userInfoIdLabel.setFont(f4);
-      add(userInfoIdLabel);
+      // userInfoIdLabel = new JLabel("ID:");
+      // userInfoIdLabel.setBounds(150, 300, 50, 30);
+      // userInfoIdLabel.setFont(f4);
+      // add(userInfoIdLabel);
 
       userINfoEmailLabel = new JLabel("E-mail:");
-      userINfoEmailLabel.setBounds(150, 350, 80, 30);
+      userINfoEmailLabel.setBounds(150, 300, 80, 30);
       userINfoEmailLabel.setFont(f4);
       add(userINfoEmailLabel);
 
       userInfoPhoneLabel = new JLabel("Phone no:");
-      userInfoPhoneLabel.setBounds(150, 400, 100, 30);
+      userInfoPhoneLabel.setBounds(150, 350, 100, 30);
       userInfoPhoneLabel.setFont(f4);
       add(userInfoPhoneLabel);
 
       userInfoAddressLabel = new JLabel("Address:");
-      userInfoAddressLabel.setBounds(150, 450, 100, 30);
+      userInfoAddressLabel.setBounds(150, 400, 100, 30);
       userInfoAddressLabel.setFont(f4);
       add(userInfoAddressLabel);
 
       userInfoUserNameLabel = new JLabel("User name:");
-      userInfoUserNameLabel.setBounds(150, 500, 100, 30);
+      userInfoUserNameLabel.setBounds(150, 475, 100, 30);
       userInfoUserNameLabel.setFont(f4);
       add(userInfoUserNameLabel);
 
-      nameData = new JLabel("...");
-      nameData.setBounds(300, 250, 50, 30);
+      nameData = new JLabel(Global.NAME);
+      nameData.setBounds(300, 250, 500, 30);
       nameData.setFont(f6);
       add(nameData);
 
-      idData = new JLabel("...");
-      idData.setBounds(300, 300, 50, 30);
-      idData.setFont(f6);
-      add(idData);
+      // idData = new JLabel(Global.ID);
+      // idData.setBounds(300, 300, 50, 30);
+      // idData.setFont(f6);
+      // add(idData);
 
-      emailData = new JLabel("...");
-      emailData.setBounds(300, 350, 80, 30);
+      emailData = new JLabel(Global.EMAIL);
+      emailData.setBounds(300, 300, 500, 30);
       emailData.setFont(f6);
       add(emailData);
 
-      phoneData = new JLabel("...");
-      phoneData.setBounds(300, 400, 100, 30);
+      phoneData = new JLabel(Global.PHONE);
+      phoneData.setBounds(300, 350, 500, 30);
       phoneData.setFont(f6);
       add(phoneData);
 
-      addressData = new JLabel("...");
-      addressData.setBounds(300, 450, 100, 30);
+      addressData = new JLabel(Global.ADDRESS);
+      addressData.setBounds(300, 400, 500, 30);
       addressData.setFont(f6);
       add(addressData);
 
-      userNameData = new JLabel("...");
-      userNameData.setBounds(300, 500, 100, 30);
+      userNameData = new JLabel(Global.USERNAME);
+      userNameData.setBounds(300, 475, 500, 30);
       userNameData.setFont(f6);
       add(userNameData);
 
@@ -98,8 +98,16 @@ public class LeftPanelUserInfo extends LeftPanel implements ActionListener{
   		btnDeleteMyAccount.setBounds(140, 570, 250, 30);
       btnDeleteMyAccount.setFont(f4);
       btnDeleteMyAccount.setForeground(Color.RED);
+      btnDeleteMyAccount.addActionListener(this);
       add(btnDeleteMyAccount);
   }
-    public void actionPerformed(ActionEvent ae){}
+    public void actionPerformed(ActionEvent ae){
+      JButton pressedButton = (JButton) ae.getSource();
+  		if (pressedButton.getText().equals("Delete My Account")){
+  				Global.database.deleteAccount();
+          Global.gui.showLoginScreen();
+          JOptionPane.showMessageDialog(null, "You can not log in anymore with your previous UserName and Password.", "Account Deleted", JOptionPane.WARNING_MESSAGE);
+  		}
+    }
 
 }

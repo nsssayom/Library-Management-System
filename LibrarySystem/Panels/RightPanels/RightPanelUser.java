@@ -26,40 +26,42 @@ JButton btnViewMyInfo, btnEditMyInfo, btnChangePass, btnBorrowedBooks, btnMyWish
 
 		Font f4= new Font("Cambria",Font.BOLD, 17);
 
-    btnViewMyInfo = new JButton("View My informations");
+    btnViewMyInfo = new JButton("View My Informations");
     btnViewMyInfo.setBounds(50, 50, 250, 50);
 		btnViewMyInfo.setFont(f4);
-  	//btnViewMyInfo.addActionListener(this);
+  	btnViewMyInfo.addActionListener(this);
     add(btnViewMyInfo);
 
 	  btnEditMyInfo = new JButton("Edit My Information");
 	  btnEditMyInfo.setBounds(50, 120, 250, 50);
 		btnEditMyInfo.setFont(f4);
-		//btnEditMyInfo.addActionListener(this);
+		btnEditMyInfo.addActionListener(this);
 		add(btnEditMyInfo);
 
 		btnChangePass = new JButton("Change Password");
 		btnChangePass.setBounds(50, 190, 250, 50);
 		btnChangePass.setFont(f4);
-		//btnChangePass.addActionListener(this);
+		btnChangePass.addActionListener(this);
 		add(btnChangePass);
 
 		btnBorrowedBooks = new JButton("Borrowed books");
 		btnBorrowedBooks.setBounds(50, 260, 250, 50);
 		btnBorrowedBooks.setFont(f4);
-		//btnBorrowedBooks.addActionListener(this);
+		btnBorrowedBooks.addActionListener(this);
 		add(btnBorrowedBooks);
 
 		btnMyWishList = new JButton("My WishList");
 		btnMyWishList.setBounds(50, 330, 250, 50);
 		btnMyWishList.setFont(f4);
-		//btnMyWishList.addActionListener(this);
+		btnMyWishList.setEnabled(false);
+		btnMyWishList.addActionListener(this);
 		add(btnMyWishList);
 
 		btnSendEmail = new JButton("Send E-mail");
 		btnSendEmail.setBounds(50, 400, 250, 50);
 		btnSendEmail.setFont(f4);
-		//btnSendEmail.addActionListener(this);
+		btnSendEmail.setEnabled(false);
+		btnSendEmail.addActionListener(this);
 		add(btnSendEmail);
 
 		colorLabelT1 = new JLabel();
@@ -70,17 +72,25 @@ JButton btnViewMyInfo, btnEditMyInfo, btnChangePass, btnBorrowedBooks, btnMyWish
   }
 
   public void actionPerformed(ActionEvent ae){
-		String text = ae.getActionCommand();
-		/*if(text.equals(btnMyInfo.getText()))
-		{
-    /* LeftPanelUserInfo LU= new LeftPanelUserInfo();
-			LU.setVisible(true);
-			System.exit(0);
+		JButton pressedButton = (JButton) ae.getSource();
+		if (pressedButton.getText().equals("View My Informations")){
+				Global.gui.viewSelfInformation();
+		}
+		else if (pressedButton.getText().equals("Edit My Information")){
+				Global.gui.editSelfInformation();
+		}
+		else if (pressedButton.getText().equals("Change Password")){
+				Global.gui.changePassword();
+		}
+		else if (pressedButton.getText().equals("Borrowed books")){
 
-		}*/
-		//if(ae.getSource== btnMyInfo){
-		//	System.exit(0);
-  //}
+		}
+		else if (pressedButton.getText().equals("My WishList")){
+
+		}
+		else if (pressedButton.getText().equals("Send E-mail")){
+
+		}
 
 	}
 

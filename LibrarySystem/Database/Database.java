@@ -180,6 +180,7 @@ public void logIn(String userName, String password) throws LibraryException{
 				accountID = result.getString("accountID");
 				Global.ACCOUNTID = Integer.parseInt(accountID);
 				System.out.println("Found User!");
+				Global.USERNAME = userName;
 			}
 			else{
 				System.out.println("User not Found");
@@ -215,7 +216,7 @@ public void logIn(String userName, String password) throws LibraryException{
 
 			roleID = resultLogin.getString("roleID");
 			peopleID = resultLogin.getString("peopleID");
-
+			Global.PEOPLEID = peopleID;
 			System.out.println(roleID);
 			roleIDInt = Integer.parseInt(roleID);
 			Global.ROLEID = roleIDInt;
@@ -233,7 +234,7 @@ public void logIn(String userName, String password) throws LibraryException{
 			throw new LibraryException("SQL Error", 301);
 		}
 		else{
-			System.out.println("Hello World Error");
+			System.out.println("Error");
 			throw new LibraryException("Wrong Password", 202);
 		}
 	}
@@ -428,9 +429,103 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 		}
 	}
 
+	public Boolean deleteAccount(){
+	      String bookAddQuery = "UPDATE userAccount SET isDeleted = ? WHERE accountID = ?;";
+				this.connectDatabase();
 
+				try{
+					this.ps = this.con.prepareStatement(bookAddQuery);
+					ps.setString(1, "1");
+					ps.setString(2, String.valueOf(Global.ACCOUNTID));
+					this.runUpdate(ps);
+					return true;
+				}
+				catch(Exception ex){
+					ex.printStackTrace();
+				}
+				finally{
+					this.closeConnection();
+				}
+				return false;
+		}
 
+		public Boolean updateSelfInfo(String name, String phoneNumber, String email, String address){
+		      String bookAddQuery = "UPDATE people SET name = ?, phoneNumber = ?, email = ?, address = ? WHERE peopleID = ?;";
+					this.connectDatabase();
+					try{
+						this.ps = this.con.prepareStatement(bookAddQuery);
+						ps.setString(1, name);
+						ps.setString(2, phoneNumber);
+						ps.setString(3, email);
+						ps.setString(4, address);
+						ps.setString(5, String.valueOf(Global.PEOPLEID));
+						this.runUpdate(ps);
 
+						Global.NAME = name;
+						Global.PHONE = phoneNumber;
+						Global.EMAIL = email;
+						Global.ADDRESS = address;
 
+						return true;
+					}
+					catch(Exception ex){
+						ex.printStackTrace();
+					}
+					finally{
+						this.closeConnection();
+					}
+					return false;
+			}
 
+		public Boolean verifyPassword(String  password){
+			String passwordQuery = "SELECT peopleID FROM userAccount WHERE " + "accountID = ? AND password = ?;";
+			this.connectDatabase();
+				ResultSet resultLogin = null;
+				Boolean resultBool = false;
+			try{
+				this.ps = this.con.prepareStatement(passwordQuery);
+				this.ps.setString(1, String.valueOf(Global.ACCOUNTID));
+				this.ps.setString(2, Crypto.SHA256(password).toUpperCase());
+				System.out.println(ps);
+				resultLogin = this.runQuery(ps);
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
+
+			try{
+					this.ps = null;
+					if (resultLogin.first()) {
+						if (Global.PEOPLEID.equals(resultLogin.getString("peopleID"))){
+							return true;
+						}
+					}
+					else{
+						return false;
+					}
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+				return false;
+			}
+			return false;
+		}
+
+		public Boolean updatePassword(String password){
+		      String updatePasswordQuery = "UPDATE userAccount SET password = ? WHERE accountID = ?;";
+					this.connectDatabase();
+					try{
+						this.ps = this.con.prepareStatement(updatePasswordQuery);
+						ps.setString(1, Crypto.SHA256(password).toUpperCase());
+						ps.setString(2, String.valueOf(Global.ACCOUNTID));
+						this.runUpdate(ps);
+						this.closeConnection();
+						return true;
+					}
+					catch(Exception ex){
+						ex.printStackTrace();
+						this.closeConnection();
+						return false;
+					}
+			}
 }

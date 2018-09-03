@@ -74,10 +74,18 @@ public class TopPanel extends JPanel implements ActionListener{
       imgLabel2 = new JLabel(img);
       imgLabel2.setBounds(23, 22, 60, 60);
       add(imgLabel2);
+
+      imgLabel2.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    Global.gui.showHome();
+                }
+            });
     }
 
   public void actionPerformed(ActionEvent ae){
     JButton pressedButton = (JButton) ae.getSource();
+
     String dataSet = searchCB.getSelectedItem().toString();
     String keyWord = searchTF.getText();
     if ((pressedButton.getText().equals("Search")) && (keyWord != null && !keyWord.isEmpty())){
