@@ -84,7 +84,7 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
 		btnAddNewBook.addActionListener(new ActionListener() {
 							    @Override
 							    public void actionPerformed(ActionEvent evt) {
-							        Global.gui.viewUserInfo(1);
+							        Global.gui.addNewBook();
 							    }
 							});
 
