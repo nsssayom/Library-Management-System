@@ -64,6 +64,7 @@ public class TopPanel extends JPanel implements ActionListener{
       btnLogOut.addActionListener(this);
       add(btnLogOut);
 
+<<<<<<< HEAD
       img = new ImageIcon("pic2.jpg");
       imgLabel2 = new JLabel(img);
       imgLabel2.setBounds(23, 22, 60, 60);
@@ -75,6 +76,26 @@ public class TopPanel extends JPanel implements ActionListener{
     titleT1.setBounds(800, 20, 450, 30);
     titleT1.setFont(f4);
     add(titleT1);*/
+=======
+>>>>>>> d4927db021aaa542f6fff12645f6f3aefae1395d
   }
-  public void actionPerformed(ActionEvent ae){}
+  public void actionPerformed(ActionEvent ae){
+    JButton pressedButton = (JButton) ae.getSource();
+    String dataSet = searchCB.getSelectedItem().toString();
+    String keyWord = searchTF.getText();
+    if ((pressedButton.getText().equals("Search")) && (keyWord != null && !keyWord.isEmpty())){
+      if (dataSet.equals("Book")){
+        Global.gui.showSearch("bookTitle", keyWord);
+      }
+      else if (dataSet.equals("Author")){
+        Global.gui.showSearch("authorName", keyWord);
+      }
+      else if(dataSet.equals("ISBN")){
+        Global.gui.showSearch("ISBN", keyWord);
+      }
+    }
+    else{
+      JOptionPane.showMessageDialog(null, "Can not search empty string.", "Nothing to Search: ", JOptionPane.WARNING_MESSAGE);
+    }
+  }
 }
