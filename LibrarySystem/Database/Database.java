@@ -444,6 +444,27 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 				return false;
 		}
 
+		public Boolean RemoveEmployee(String accountID){
+					String bookAddQuery = "UPDATE userAccount SET isDeleted = ? WHERE accountID = ?;";
+					this.connectDatabase();
+
+					try{
+						this.ps = this.con.prepareStatement(bookAddQuery);
+						ps.setString(1, "1");
+						ps.setString(2, accountID);
+						this.runUpdate(ps);
+						return true;
+					}
+					catch(Exception ex){
+						//ex.printStackTrace();
+					}
+					finally{
+						this.closeConnection();
+					}
+					return false;
+			}
+
+
 		public void deleteBook(String bookID) throws Exception{
 					String bookDeleteQuery = "UPDATE books SET isDeleted = ? WHERE bookID = ?;";
 					this.connectDatabase();
@@ -911,34 +932,66 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						}
 					}
 
-					// public void issueBook(String bookID, String userName) throws Exception{
-					// 	String borrowQuery;
-					// 		borrowQuery = 	"BEGIN;"
-					// 										+ "INSERT INTO borrowInfo (bookID, accountID)"
-					// 										+ " VALUES(?, (SELECT accountID FROM userAccount WHERE userName = ?));"
-					// 										+ "UPDATE books SET availableQuantity = availableQuantity - 1"
-					// 										+ " WHERE bookID = ? AND availableQuantity > 0;"
-					// 										+ " COMMIT;";
-					//
-					// 	this.connectDatabase();
-					// 	try{
-					// 		this.ps = this.con.prepareStatement(borrowQuery);
-					// 		ps.setString(1, bookID);
-					// 		ps.setString(2, userName);
-					// 		ps.setString(3, bookID);
-					// 		System.out.println(ps);
-					// 		this.runUpdate(ps);
-					// 	}
-					// 	catch(Exception ex){
-					// 		throw ex;
-					// 	}
-					// 	finally{
-					// 		this.closeConnection();
-					// 	}
-					// }
+					public Object[][] showBorrowedBooks(String accountID) throws LibraryException{
+						String searchQuery = "SELECT * FROM books, borrowInfo WHERE borrowInfo.accountID = ? AND borrowInfo.bookID = books.bookID AND books.isDeleted = 0;";
+						this.connectDatabase();
+						ResultSet result;
+						Object[][] resultArray = null;
+						List<List<String>> bookList = new ArrayList<List<String>>();
+						int rowCount = 0;
 
+						//run query to get books
+						try{
+							this.ps = this.con.prepareStatement(searchQuery);
+							this.ps.setString(1, accountID);
+							System.out.println(ps);
+							result = this.runQuery(ps);
+						}
+						catch(Exception ex){
+							throw new LibraryException ("SQL Error", 301);
+						}
 
+						//extracting SQL return to Object[][]
+						try{
+								int cnt = 0;
+								while(result.next()){
+									List<String> bookDetail = new ArrayList<String>();
+									bookDetail.add(result.getString("bookID"));
+									bookDetail.add(result.getString("bookTitle"));
+									bookDetail.add(result.getString("authorName"));
+									bookDetail.add(result.getString("publicationYear"));
+									bookDetail.add(result.getString("shelf"));
+									bookDetail.add(result.getString("availableQuantity"));
+									bookList.add(bookDetail);
+									System.out.println(Arrays.deepToString(bookDetail.toArray()));
+								}
+								System.out.println("Data Extraction completed: ");
+								rowCount = bookList.size();
+								System.out.println(Arrays.deepToString(bookList.toArray()));
 
-
-
+								resultArray = new Object[rowCount][6];
+								try{
+									for(int i = 0; i < rowCount; i++){
+										for(int j = 0; j < 6; j++){
+											resultArray[i][j] = bookList.get(i).get(j);
+										}
+									}
+										//bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
+									}
+									catch(Exception ex){
+										System.out.println("Error exporting result to an array");
+									}
+						}
+						catch(Exception ex){
+							if (!(ex instanceof LibraryException)){
+								throw new LibraryException("SQL Error", 301);
+							}
+							else{
+								throw new LibraryException("No Data found", 205);
+							}
+						}
+						finally{
+							return resultArray;
+						}
+					}
 }

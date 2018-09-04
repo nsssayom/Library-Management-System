@@ -83,7 +83,7 @@ JButton btnViewMyInfo, btnEditMyInfo, btnChangePass, btnBorrowedBooks, btnMyWish
 				Global.gui.changePassword();
 		}
 		else if (pressedButton.getText().equals("Borrowed books")){
-
+				Global.gui.showBorrowedBooks(String.valueOf(Global.ACCOUNTID));
 		}
 		else if (pressedButton.getText().equals("My WishList")){
 

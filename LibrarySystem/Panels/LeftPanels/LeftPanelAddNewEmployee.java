@@ -6,7 +6,7 @@ import LibrarySystem.Windows.*;
 import LibrarySystem.Panels.LeftPanels.*;
 import LibrarySystem.Panels.RightPanels.*;
 import LibrarySystem.Panels.TopPanels.*;
- 
+
 import java.lang.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -130,6 +130,7 @@ public class LeftPanelAddNewEmployee extends LeftPanel implements ActionListener
                       }
 
   							      Global.database.signUp(name, "", email, phone, address, userName, password, roleID, salary);
+                      JOptionPane.showMessageDialog(null, "New employee Added!", "Success", JOptionPane.INFORMATION_MESSAGE);
   							    }
   							});
     }

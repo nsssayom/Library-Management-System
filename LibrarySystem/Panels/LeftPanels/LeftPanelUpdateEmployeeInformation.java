@@ -123,10 +123,22 @@ public class LeftPanelUpdateEmployeeInformation extends LeftPanel implements Act
                     }
   							   });
 
-      btnDelete = new JButton("Delete Employee");
+      btnDelete = new JButton("Fire Employee");
       btnDelete.setBounds(300, 450, 200, 33);
       btnDelete.setEnabled(true);
       btnDelete.setForeground(Color.RED);
+      btnDelete.addActionListener(new ActionListener() {
+  							    @Override
+  							    public void actionPerformed(ActionEvent evt) {
+                      try{
+                        Global.database.RemoveEmployee(LeftPanelUpdateEmployeeInformation.accountID);
+                        JOptionPane.showMessageDialog(null, "Employee Fired!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                      }
+                      catch(Exception ex){
+                        JOptionPane.showMessageDialog(null, "Can not fire Employee!", "Error", JOptionPane.WARNING_MESSAGE);
+                      }
+                    }
+  							   });
       add(btnDelete);
 
 

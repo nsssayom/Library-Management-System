@@ -150,6 +150,27 @@ public void clearLeftPanel(){
 		this.repaint();
 	}
 
+	public void showBorrowedBooks(String accountID){
+		this.clearLeftPanel();
+		String [] index;
+		index= new String[]{"ID", "Book Title", "Author Name",
+											"publication Year", "Shelf", "Quantity"};
+
+		try{
+			Object[][] rawData = Global.database.showBorrowedBooks(accountID);
+			tablePanel = new TablePanel(index, rawData);
+			mainPanel.add(tablePanel);
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
 	public void viewSelfInformation(){
 		this.clearLeftPanel();
 
