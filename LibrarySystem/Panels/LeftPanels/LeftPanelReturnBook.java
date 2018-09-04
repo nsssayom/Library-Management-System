@@ -16,7 +16,7 @@ import java.awt.*;
 public class LeftPanelReturnBook extends LeftPanel implements ActionListener{
 
  JLabel title, bookId;
- JTextField bookIdTF;
+ JTextField borrowTF;
  JButton btnReturn;
 
   public LeftPanelReturnBook(){
@@ -30,17 +30,35 @@ public class LeftPanelReturnBook extends LeftPanel implements ActionListener{
       title.setFont(f2);
       add(title);
 
-      bookId = new JLabel("Book ID");
+      bookId = new JLabel("Borrow ID");
       bookId.setBounds(150, 280, 150, 30);
       bookId.setFont(f4);
       add(bookId);
 
-      bookIdTF = new JTextField();
-      bookIdTF.setBounds(300, 280, 200, 30);
-      add(bookIdTF);
+      borrowTF = new JTextField();
+      borrowTF.setBounds(300, 280, 200, 30);
+      add(borrowTF);
 
       btnReturn = new JButton("Return");
       btnReturn.setBounds(150, 380, 110, 33);
       add(btnReturn);
+      btnReturn.addActionListener(this);
     }
+
+    public void actionPerformed(ActionEvent ae){
+      JButton pressedButton = (JButton) ae.getSource();
+      String borrowID = borrowTF.getText();
+
+      if (pressedButton.getText().equals("Return")) {
+        System.out.println(borrowID);
+        try{
+          Global.database.returnBook(borrowID);
+          JOptionPane.showMessageDialog(null, "Book successfully returned", "Success", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "Book return failed", "Success", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }
+  }
 }

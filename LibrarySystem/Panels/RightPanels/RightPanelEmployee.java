@@ -110,10 +110,22 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
     btnReturnBook.setBounds(50,400 , 250, 30);
     btnReturnBook.setFont(f4);
     add(btnReturnBook);
+		btnReturnBook.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+												Global.gui.returnBook();
+							    }
+							});
 
     btnUpdateBookInfo = new JButton("Update Book Information");
     btnUpdateBookInfo.setBounds(50, 450, 250, 30);
     btnUpdateBookInfo.setFont(f4);
     add(btnUpdateBookInfo);
+		btnUpdateBookInfo.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+												Global.gui.updateBook();
+							    }
+							});
   }
 }

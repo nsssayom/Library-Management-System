@@ -29,6 +29,8 @@ public class GUI extends JFrame implements ActionListener{
 	LeftPanelAddNewBook leftPanelAddNewBook;
 	LeftPanelAddNewEmployee leftPanelAddNewEmployee;
 	LeftPanelIssueBook leftPanelIssueBook;
+	LeftPanelReturnBook leftPanelReturnBook;
+	UpdateBookInfo updateBookInfo;
 
 	RightPanelReg rightPanelReg;
 	RightPanelUser rightPanelUser;
@@ -197,6 +199,18 @@ public void clearLeftPanel(){
 		this.repaint();
 	}
 
+	public void updateBook(){
+		this.clearLeftPanel();
+
+		updateBookInfo = new UpdateBookInfo();
+		mainPanel.add(updateBookInfo);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
 	public void addNewEmployee(){
 		this.clearLeftPanel();
 
@@ -214,6 +228,18 @@ public void clearLeftPanel(){
 
 		leftPanelIssueBook = new LeftPanelIssueBook();
 		mainPanel.add(leftPanelIssueBook);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void returnBook(){
+		this.clearLeftPanel();
+
+		leftPanelReturnBook = new LeftPanelReturnBook();
+		mainPanel.add(leftPanelReturnBook);
 
 		mainPanel.revalidate();
 		mainPanel.repaint();

@@ -524,6 +524,28 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 					}
 			}
 
+
+			public Boolean updateBook(String bookID, String title, String author, String pubYear, String quantity){
+			      String updatePasswordQuery = "UPDATE books SET bookTitle = ?, authorName = ?, publicationYear = ?, availableQuantity = ? WHERE bookID = ?;";
+						this.connectDatabase();
+						try{
+							this.ps = this.con.prepareStatement(updatePasswordQuery);
+							ps.setString(1, title);
+							ps.setString(2, author);
+							ps.setString(3, pubYear);
+							ps.setString(4, quantity);
+							ps.setString(5, bookID);
+							this.runUpdate(ps);
+							this.closeConnection();
+							return true;
+						}
+						catch(Exception ex){
+							ex.printStackTrace();
+							this.closeConnection();
+							return false;
+						}
+				}
+
 		public Object[][] readUserInfo(int mode) throws LibraryException{
 				//mode == 0 : User
 				//mode == 1: Employee

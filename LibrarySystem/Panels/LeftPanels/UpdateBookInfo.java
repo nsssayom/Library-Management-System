@@ -88,10 +88,6 @@ public class UpdateBookInfo extends LeftPanel implements ActionListener{
       btnUpdate.addActionListener(this);
       add(btnUpdate);
 
-      btnAddBooks = new JButton("Add books");
-  		btnAddBooks.setBounds(150, 600, 150, 33);
-  		btnAddBooks.addActionListener(this);
-  		add(btnAddBooks);
 
       btnDeleteBooks = new JButton("Delete books");
   		btnDeleteBooks.setBounds(350, 600, 150, 33);
