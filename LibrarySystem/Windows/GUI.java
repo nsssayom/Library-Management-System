@@ -19,7 +19,6 @@ import java.util.List;
 public class GUI extends JFrame implements ActionListener{
 	JButton btnLogin, btnExit;
   JPanel mainPanel;
-	UpdateBookInfo updateBookInfo;
 
 	LeftPanel leftPanel;
 	LeftPanelLogin leftPanelLogin;

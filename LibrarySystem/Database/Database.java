@@ -444,6 +444,24 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 				return false;
 		}
 
+		public void deleteBook(String bookID) throws Exception{
+					String bookDeleteQuery = "UPDATE books SET isDeleted = ? WHERE bookID = ?;";
+					this.connectDatabase();
+
+					try{
+						this.ps = this.con.prepareStatement(bookDeleteQuery);
+						ps.setString(1, "1");
+						ps.setString(2, bookID);
+						this.runUpdate(ps);
+					}
+					catch(Exception ex){
+						throw ex;
+					}
+					finally{
+						this.closeConnection();
+					}
+			}
+
 		public Boolean updateSelfInfo(String name, String phoneNumber, String email, String address){
 		      String bookAddQuery = "UPDATE people SET name = ?, phoneNumber = ?, email = ?, address = ? WHERE peopleID = ?;";
 					this.connectDatabase();
@@ -736,4 +754,100 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						this.closeConnection();
 					}
 				}
+
+				public Object[][] loadBookInfo(String bookID) throws LibraryException{
+						String peopleQuery = "";
+						peopleQuery = "SELECT * FROM books " +
+													"WHERE bookID = ? " +
+													"AND isDeleted = 0 ORDER BY popularity DESC;";
+
+						this.connectDatabase();
+						ResultSet result;
+						Object[][] resultArray = null;
+						List<List<String>> bookList = new ArrayList<List<String>>();
+						int rowCount = 0;
+
+						//run query to get books
+						try{
+							this.ps = this.con.prepareStatement(peopleQuery);
+							this.ps.setString(1, bookID);
+							System.out.println(ps);
+							result = this.runQuery(ps);
+						}
+						catch(Exception ex){
+							throw new LibraryException ("SQL Error", 301);
+						}
+
+						//extracting SQL return to Object[][]
+						try{
+								int cnt = 0;
+								while(result.next()){
+									List<String> bookDetail = new ArrayList<String>();
+									bookDetail.add(result.getString("bookTitle"));
+									bookDetail.add(result.getString("authorName"));
+									bookDetail.add(result.getString("publicationYear"));
+									bookDetail.add(result.getString("availableQuantity"));
+									bookList.add(bookDetail);
+									System.out.println(Arrays.deepToString(bookDetail.toArray()));
+								}
+								System.out.println("Data Extraction completed: ");
+								rowCount = bookList.size();
+								System.out.println(Arrays.deepToString(bookList.toArray()));
+
+								resultArray = new Object[rowCount][4];
+								try{
+									for(int i = 0; i < rowCount; i++){
+										for(int j = 0; j < 4; j++){
+											resultArray[i][j] = bookList.get(i).get(j);
+										}
+									}
+										//bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
+								}
+								catch(Exception ex){
+										System.out.println("Error exporting result to an array");
+								}
+						}
+						catch(Exception ex){
+							if (!(ex instanceof LibraryException)){
+								throw new LibraryException("SQL Error", 301);
+							}
+							else{
+								throw new LibraryException("No Data found", 205);
+							}
+						}
+						finally{
+							return resultArray;
+						}
+					}
+
+					// public void issueBook(String bookID, String userName) throws Exception{
+					// 	String borrowQuery;
+					// 		borrowQuery = 	"BEGIN;"
+					// 										+ "INSERT INTO borrowInfo (bookID, accountID)"
+					// 										+ " VALUES(?, (SELECT accountID FROM userAccount WHERE userName = ?));"
+					// 										+ "UPDATE books SET availableQuantity = availableQuantity - 1"
+					// 										+ " WHERE bookID = ? AND availableQuantity > 0;"
+					// 										+ " COMMIT;";
+					//
+					// 	this.connectDatabase();
+					// 	try{
+					// 		this.ps = this.con.prepareStatement(borrowQuery);
+					// 		ps.setString(1, bookID);
+					// 		ps.setString(2, userName);
+					// 		ps.setString(3, bookID);
+					// 		System.out.println(ps);
+					// 		this.runUpdate(ps);
+					// 	}
+					// 	catch(Exception ex){
+					// 		throw ex;
+					// 	}
+					// 	finally{
+					// 		this.closeConnection();
+					// 	}
+					// }
+
+
+
+
+
 }
