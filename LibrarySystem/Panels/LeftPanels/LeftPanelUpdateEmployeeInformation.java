@@ -113,7 +113,7 @@ public class LeftPanelUpdateEmployeeInformation extends LeftPanel implements Act
                           roleIDfetch = "3";
                         }
 
-                        Global.gui.updateEmployee(LeftPanelUpdateEmployeeInformation.accountID,
+                        Global.database.updateEmployeeInfo(LeftPanelUpdateEmployeeInformation.accountID,
                                                  roleIDfetch, salaryTF.getText());
                         JOptionPane.showMessageDialog(null, "Information Updated!", "Success", JOptionPane.INFORMATION_MESSAGE);
                       }
@@ -124,7 +124,7 @@ public class LeftPanelUpdateEmployeeInformation extends LeftPanel implements Act
   							   });
 
       btnDelete = new JButton("Delete Employee");
-      btnDelete.setBounds(300, 400, 250, 33);
+      btnDelete.setBounds(300, 450, 200, 33);
       btnDelete.setEnabled(true);
       btnDelete.setForeground(Color.RED);
       add(btnDelete);
