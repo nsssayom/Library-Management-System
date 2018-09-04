@@ -128,10 +128,17 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo, btnChange
 												Global.gui.updateBook();
 							    }
 							});
+
   	btnUpdateEmployeeInfo = new JButton("Update Employee Information");
 		btnUpdateEmployeeInfo.setBounds(50, 500, 250, 30);
 		btnUpdateEmployeeInfo.setFont(f1);
 		add(btnUpdateEmployeeInfo);
+		btnUpdateEmployeeInfo.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+												Global.gui.updateEmployee();
+							    }
+							});
 
 		btnChangePassword = new JButton("Change Password");
 	  btnChangePassword.setBounds(50, 550, 250, 30);

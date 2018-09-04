@@ -566,7 +566,7 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 
 
 				public Object[][] loadEmployeeInfo(String name) throws LibraryException{
-						String peopleQuery = "SELECT roleID, salary FROM people, userAccount, salary " +
+						String peopleQuery = "SELECT people.peopleID, userAccount.accountID, roleID, salary FROM people, userAccount, salary " +
 																	"WHERE people.name = ? AND userAccount.roleID < 4 AND " +
 																	"userAccount.isDeleted = 0 AND people.peopleID = userAccount.peopleID " +
 																	"AND userAccount.accountID = salary.accountID;";
@@ -593,6 +593,8 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 								int cnt = 0;
 								while(result.next()){
 									List<String> bookDetail = new ArrayList<String>();
+									bookDetail.add(result.getString("peopleID"));
+									bookDetail.add(result.getString("accountID"));
 									bookDetail.add(result.getString("roleID"));
 									bookDetail.add(result.getString("salary"));
 									bookList.add(bookDetail);
@@ -602,10 +604,10 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 								rowCount = bookList.size();
 								System.out.println(Arrays.deepToString(bookList.toArray()));
 
-								resultArray = new Object[rowCount][2];
+								resultArray = new Object[rowCount][4];
 								try{
 									for(int i = 0; i < rowCount; i++){
-										for(int j = 0; j < 2; j++){
+										for(int j = 0; j < 4; j++){
 											resultArray[i][j] = bookList.get(i).get(j);
 										}
 									}
@@ -629,9 +631,30 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 					}
 
 
-
-
-
+					public void updateEmployee(String accountID, String roleID, String salary) throws Exception{
+								String updateEmployeeQuery = "BEGIN;"
+																					+ " UPDATE userAccount SET roleID = ? "
+											  									+ " WHERE accountID = ?;"
+																					+ " UPDATE salary SET salary = ? "
+											  									+ " WHERE accountID = ?;"
+																					+ " COMMIT;";
+								this.connectDatabase();
+								try{
+									this.ps = this.con.prepareStatement(updateEmployeeQuery);
+									ps.setString(1, roleID);
+									ps.setString(2, accountID);
+									ps.setString(3, salary);
+									ps.setString(4, accountID);
+									this.runUpdate(ps);
+									this.closeConnection();
+								}
+								catch(Exception ex){
+									throw ex;
+								}
+								finally{
+									this.closeConnection();
+								}
+						}
 
 		public Object[][] readUserInfo(int mode) throws LibraryException{
 				//mode == 0 : User

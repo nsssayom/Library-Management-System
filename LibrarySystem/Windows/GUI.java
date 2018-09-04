@@ -30,6 +30,7 @@ public class GUI extends JFrame implements ActionListener{
 	LeftPanelIssueBook leftPanelIssueBook;
 	LeftPanelReturnBook leftPanelReturnBook;
 	UpdateBookInfo updateBookInfo;
+	LeftPanelUpdateEmployeeInformation leftPanelUpdateEmployeeInformation;
 
 	RightPanelReg rightPanelReg;
 	RightPanelUser rightPanelUser;
@@ -203,6 +204,18 @@ public void clearLeftPanel(){
 
 		updateBookInfo = new UpdateBookInfo();
 		mainPanel.add(updateBookInfo);
+
+		mainPanel.revalidate();
+		mainPanel.repaint();
+		this.revalidate();
+		this.repaint();
+	}
+
+	public void updateEmployee(){
+		this.clearLeftPanel();
+
+		leftPanelUpdateEmployeeInformation = new LeftPanelUpdateEmployeeInformation();
+		mainPanel.add(leftPanelUpdateEmployeeInformation);
 
 		mainPanel.revalidate();
 		mainPanel.repaint();
