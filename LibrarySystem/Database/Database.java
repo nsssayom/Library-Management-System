@@ -63,17 +63,13 @@ public class Database{
 		}
 	}
 
-	public Boolean runUpdate(PreparedStatement Statement){
+	public void runUpdate(PreparedStatement Statement) throws Exception{
 		try{
 			if (Statement.executeUpdate() < 1){
-				return false;
 			}
-			return true;
 		}
 		catch(Exception ex){
-			System.out.println("Executing Update Eror");
-			ex.printStackTrace();
-			return false;
+			throw ex;
 		}
 		finally{
 			this.closeConnection();
@@ -96,7 +92,6 @@ public class Database{
 			}
     catch(Exception ex){
 				System.out.println("Database connection closing failed");
-				ex.printStackTrace();
 			}
 	}
 
@@ -138,7 +133,7 @@ public class Database{
 			return true;
 		}
 		catch(Exception ex){
-			ex.printStackTrace();
+			//ex.printStackTrace();
 		}
 		finally{
 			this.closeConnection();
@@ -295,7 +290,7 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 				return true;
 			}
 			catch(Exception ex){
-				ex.printStackTrace();
+				//ex.printStackTrace();
 			}
 			finally{
 				this.closeConnection();
@@ -441,7 +436,7 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 					return true;
 				}
 				catch(Exception ex){
-					ex.printStackTrace();
+					//ex.printStackTrace();
 				}
 				finally{
 					this.closeConnection();
@@ -669,7 +664,7 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 					}
 				}
 
-				public Boolean issueBook(String bookID, String userName){
+				public void issueBook(String bookID, String userName) throws Exception{
 					String borrowQuery;
 						borrowQuery = 	"BEGIN;"
 														+ "INSERT INTO borrowInfo (bookID, accountID)"
@@ -683,44 +678,40 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						this.ps = this.con.prepareStatement(borrowQuery);
 						ps.setString(1, bookID);
 						ps.setString(2, userName);
+						ps.setString(3, bookID);
 						System.out.println(ps);
 						this.runUpdate(ps);
-						return true;
 					}
 					catch(Exception ex){
-						ex.printStackTrace();
+						throw ex;
 					}
 					finally{
 						this.closeConnection();
 					}
-					return false;
 				}
 
-				public Boolean returnBook(String borrowID){
+				public void returnBook(String borrowID) throws Exception{
 					String borrowQuery;
 						borrowQuery = 	"BEGIN;"
 														+ "INSERT INTO returnInfo (borrowID)"
 														+ " VALUES(?);"
 														+ "UPDATE books SET availableQuantity = availableQuantity + 1"
-														+ " WHERE bookID = ? AND availableQuantity < totalQuantity;"
+														+ " WHERE bookID = (SELECT bookID FROM borrowInfo WHERE borrowID = ?) AND availableQuantity < totalQuantity;"
 														+ " COMMIT;";
 
 					this.connectDatabase();
 					try{
 						this.ps = this.con.prepareStatement(borrowQuery);
-						ps.setString(1, bookID);
-						ps.setString(2, userName);
+						ps.setString(1, borrowID);
+						ps.setString(2, borrowID);
 						System.out.println(ps);
 						this.runUpdate(ps);
-						return true;
 					}
 					catch(Exception ex){
-						ex.printStackTrace();
+						throw ex;
 					}
 					finally{
 						this.closeConnection();
 					}
-					return false;
 				}
-
 }
