@@ -16,7 +16,8 @@ import java.awt.*;
 public class LeftPanelAddNewEmployee extends LeftPanel implements ActionListener{
 
  JLabel addNewEmpLabel,nameLabel,roleLabel, phoneLabel,emailLabel, addressLabel, salaryLabel,userNameLabel, passLabel;
- JTextField nameTF, phoneTF,emailTF, addressTF, salaryTF,roleTF,userNameTF, passTF;
+ JTextField nameTF, phoneTF,emailTF, addressTF, salaryTF,roleTF,userNameTF;
+ JPasswordField passTF;
  JButton btnAdd;
  JComboBox roleCB;
 
@@ -77,13 +78,14 @@ public class LeftPanelAddNewEmployee extends LeftPanel implements ActionListener
       nameTF.setBounds(300, 230, 200, 30);
       add(nameTF);
 
+      emailTF = new JTextField();
+      emailTF.setBounds(300, 280, 200, 30);
+      add(emailTF);
+
       phoneTF = new JTextField();
-      phoneTF.setBounds(300, 380, 200, 30);
+      phoneTF.setBounds(300, 330, 200, 30);
       add(phoneTF);
 
-      emailTF = new JTextField();
-      emailTF.setBounds(300, 330, 200, 30);
-      add(emailTF);
 
       addressTF = new JTextField();
       addressTF.setBounds(300, 380, 200, 30);
@@ -102,12 +104,33 @@ public class LeftPanelAddNewEmployee extends LeftPanel implements ActionListener
       userNameTF.setBounds(300, 540, 200, 30);
       add(userNameTF);
 
-      passTF = new JTextField();
+      passTF = new JPasswordField();
       passTF.setBounds(300, 590, 200, 30);
       add(passTF);
 
       btnAdd = new JButton("Add");
-      btnAdd.setBounds(150, 600, 100, 33);
+      btnAdd.setBounds(150, 650, 100, 33);
       add(btnAdd);
+      btnAdd.addActionListener(new ActionListener() {
+  							    @Override
+  							    public void actionPerformed(ActionEvent evt) {
+                      String name = nameTF.getText();
+                      String email = emailTF.getText();
+                      String phone = phoneTF.getText();
+                      String address = addressTF.getText();
+                      String userName = userNameTF.getText();
+                      String password = new String (passTF.getPassword());
+                      String salary =  salaryTF.getText();
+                      String roleID = "";
+                      if (roleCB.getSelectedItem().toString().equals("Manager")){
+                          roleID = "2";
+                      }
+                      else{
+                        roleID = "3";
+                      }
+
+  							      Global.database.signUp(name, "", email, phone, address, userName, password, roleID, salary);
+  							    }
+  							});
     }
   }

@@ -13,13 +13,13 @@ import java.awt.event.*;
 import java.sql.*;
 import java.awt.*;
 
-public class LeftPanelIsshueBook extends LeftPanel implements ActionListener{
+public class LeftPanelIssueBook extends LeftPanel implements ActionListener{
 
  JLabel title, bookId, userName ;
  JTextField bookIdTF,userNameTF;
- JButton btnIsshue;
+ JButton btnIssue;
 
-  public LeftPanelIsshueBook(){
+  public LeftPanelIssueBook(){
       super();
       //setBounds(0, 100 , 900, 800);
       //setLayout(null);
@@ -27,7 +27,7 @@ public class LeftPanelIsshueBook extends LeftPanel implements ActionListener{
       Font f2 = new Font("Cambria",Font.BOLD, 20);
       Font f4= new Font("Cambria",Font.BOLD, 17);
 
-      title = new JLabel("Isshue Book");
+      title = new JLabel("Issue Book");
       title.setBounds(140, 150,300, 30);
       title.setFont(f2);
       add(title);
@@ -50,9 +50,22 @@ public class LeftPanelIsshueBook extends LeftPanel implements ActionListener{
       userNameTF.setBounds(300, 330, 200, 30);
       add(userNameTF);
 
-
-      btnIsshue = new JButton("Isshue");
-      btnIsshue.setBounds(150, 380, 110, 33);
-      add(btnIsshue);
-}
+      btnIssue = new JButton("Issue");
+      btnIssue.setBounds(150, 380, 110, 33);
+      add(btnIssue);
+      btnIssue.addActionListener(new ActionListener() {
+  							    @Override
+  							    public void actionPerformed(ActionEvent evt) {
+                          String bookID = bookIdTF.getText();
+                          String userName = userNameTF.getText();
+                          try{
+                             Global.database.issueBook(bookID, userName);
+                             JOptionPane.showMessageDialog(null, "Book successfully issued.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                          }
+                          catch(Exception ex){
+                            JOptionPane.showMessageDialog(null, "Can not issue this book.", "Error", JOptionPane.ERROR_MESSAGE);
+                          }
+  							    }
+  							});
+    }
 }

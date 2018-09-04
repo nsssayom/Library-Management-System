@@ -76,6 +76,13 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
     btnAddNewEmployee.setFont(f4);
 		if (Global.ROLEID > 2){btnAddNewEmployee.setEnabled(false);}
     add(btnAddNewEmployee);
+		btnAddNewEmployee.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+							        Global.gui.addNewEmployee();
+							    }
+							});
+
 
 		btnAddNewBook = new JButton("Add New Book");
     btnAddNewBook.setBounds(50, 300, 250, 30);
@@ -92,6 +99,12 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
     btnIssueBook.setBounds(50, 350, 250, 30);
     btnIssueBook.setFont(f4);
     add(btnIssueBook);
+		btnIssueBook.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+												Global.gui.issueBook();
+							    }
+							});
 
     btnReturnBook = new JButton("Return Book");
     btnReturnBook.setBounds(50,400 , 250, 30);
