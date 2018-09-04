@@ -100,6 +100,28 @@ public class LeftPanelUpdateEmployeeInformation extends LeftPanel implements Act
       btnUpdate.setEnabled(true);
       btnUpdate.setForeground(Color.GREEN);
       add(btnUpdate);
+      btnUpdate.addActionListener(new ActionListener() {
+  							    @Override
+  							    public void actionPerformed(ActionEvent evt) {
+                      try{
+                        String roleIDfetch = "";
+                        String roleCBText = roleCB.getSelectedItem().toString();
+                        if (roleCBText.equals("Manager")){
+                          roleIDfetch = "2";
+                        }
+                        else{
+                          roleIDfetch = "3";
+                        }
+
+                        Global.gui.updateEmployee(LeftPanelUpdateEmployeeInformation.accountID,
+                                                 roleIDfetch, salaryTF.getText());
+                        JOptionPane.showMessageDialog(null, "Information Updated!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                      }
+                      catch(Exception ex){
+                        JOptionPane.showMessageDialog(null, "Employee not found!", "Error", JOptionPane.WARNING_MESSAGE);
+                      }
+                    }
+  							   });
 
       btnDelete = new JButton("Delete Employee");
       btnDelete.setBounds(300, 400, 250, 33);

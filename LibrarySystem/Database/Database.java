@@ -630,7 +630,6 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						}
 					}
 
-
 					public void updateEmployee(String accountID, String roleID, String salary) throws Exception{
 								String updateEmployeeQuery = "BEGIN;"
 																					+ " UPDATE userAccount SET roleID = ? "
