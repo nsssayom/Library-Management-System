@@ -13,21 +13,19 @@ import java.awt.event.*;
 import java.sql.*;
 import java.awt.*;
 
-public class LeftPanelIsshueBook extends LeftPanel implements ActionListener{
+public class LeftPanelReturnBook extends LeftPanel implements ActionListener{
 
- JLabel title, bookId, userName ;
- JTextField bookIdTF,userNameTF;
- JButton btnIsshue;
+ JLabel title, bookId;
+ JTextField bookIdTF;
+ JButton btnReturn;
 
-  public LeftPanelIsshueBook(){
+  public LeftPanelReturnBook(){
       super();
-      //setBounds(0, 100 , 900, 800);
-      //setLayout(null);
 
       Font f2 = new Font("Cambria",Font.BOLD, 20);
       Font f4= new Font("Cambria",Font.BOLD, 17);
 
-      title = new JLabel("Isshue Book");
+      title = new JLabel("Return Book");
       title.setBounds(140, 150,300, 30);
       title.setFont(f2);
       add(title);
@@ -37,22 +35,12 @@ public class LeftPanelIsshueBook extends LeftPanel implements ActionListener{
       bookId.setFont(f4);
       add(bookId);
 
-      userName = new JLabel("User Name");
-      userName.setBounds(150,330,150, 30);
-      userName.setFont(f4);
-      add(userName);
-
       bookIdTF = new JTextField();
       bookIdTF.setBounds(300, 280, 200, 30);
       add(bookIdTF);
 
-      userNameTF = new JTextField();
-      userNameTF.setBounds(300, 330, 200, 30);
-      add(userNameTF);
-
-
-      btnIsshue = new JButton("Isshue");
-      btnIsshue.setBounds(150, 380, 110, 33);
-      add(btnIsshue);
-}
+      btnReturn = new JButton("Return");
+      btnReturn.setBounds(150, 380, 110, 33);
+      add(btnReturn);
+    }
 }
