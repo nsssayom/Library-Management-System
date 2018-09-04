@@ -564,6 +564,75 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						}
 				}
 
+
+				public Object[][] loadEmployeeInfo(String name) throws LibraryException{
+						String peopleQuery = "SELECT roleID, salary FROM people, userAccount, salary " +
+																	"WHERE people.name = ? AND userAccount.roleID < 4 AND " +
+																	"userAccount.isDeleted = 0 AND people.peopleID = userAccount.peopleID " +
+																	"AND userAccount.accountID = salary.accountID;";
+
+						this.connectDatabase();
+						ResultSet result;
+						Object[][] resultArray = null;
+						List<List<String>> bookList = new ArrayList<List<String>>();
+						int rowCount = 0;
+
+						//run query to get books
+						try{
+							this.ps = this.con.prepareStatement(peopleQuery);
+							ps.setString(1, name);
+							System.out.println(ps);
+							result = this.runQuery(ps);
+						}
+						catch(Exception ex){
+							throw new LibraryException ("SQL Error", 301);
+						}
+
+						//extracting SQL return to Object[][]
+						try{
+								int cnt = 0;
+								while(result.next()){
+									List<String> bookDetail = new ArrayList<String>();
+									bookDetail.add(result.getString("roleID"));
+									bookDetail.add(result.getString("salary"));
+									bookList.add(bookDetail);
+									System.out.println(Arrays.deepToString(bookDetail.toArray()));
+								}
+								System.out.println("Data Extraction completed: ");
+								rowCount = bookList.size();
+								System.out.println(Arrays.deepToString(bookList.toArray()));
+
+								resultArray = new Object[rowCount][2];
+								try{
+									for(int i = 0; i < rowCount; i++){
+										for(int j = 0; j < 2; j++){
+											resultArray[i][j] = bookList.get(i).get(j);
+										}
+									}
+										//bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
+								}
+								catch(Exception ex){
+										System.out.println("Error exporting result to an array");
+								}
+						}
+						catch(Exception ex){
+							if (!(ex instanceof LibraryException)){
+								throw new LibraryException("SQL Error", 301);
+							}
+							else{
+								throw new LibraryException("No Data found", 205);
+							}
+						}
+						finally{
+							return resultArray;
+						}
+					}
+
+
+
+
+
+
 		public Object[][] readUserInfo(int mode) throws LibraryException{
 				//mode == 0 : User
 				//mode == 1: Employee
