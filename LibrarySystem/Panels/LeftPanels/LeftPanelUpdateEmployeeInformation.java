@@ -53,5 +53,11 @@ public class LeftPanelUpdateEmployeeInformation extends LeftPanel implements Act
       add(salaryTF);
 
 
+      btnUpdate = new JButton("Update");
+      btnUpdate.setBounds(300, 340, 200, 33);
+      btnUpdate.setForeground(Color.GREEN);
+      add(btnUpdate);
+
+
 }
 }
