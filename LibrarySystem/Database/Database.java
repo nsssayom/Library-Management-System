@@ -682,14 +682,14 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 				String peopleQuery = "";
 
 				if (mode == 0){
-					peopleQuery = "SELECT name, phoneNumber, email, address FROM people, userAccount " +
+					peopleQuery = "SELECT name, phoneNumber, email, address, roleName FROM people, userAccount, roles " +
 												"WHERE people.peopleID = userAccount.peopleID AND userAccount.roleID = 4 AND " +
-												"userAccount.isDeleted = 0 ORDER BY people.name ASC;";
+												"userAccount.roleID = roles.roleID AND userAccount.isDeleted = 0 ORDER BY people.name ASC;";
 				}
 				else{
-					peopleQuery = "SELECT name, phoneNumber, email, address FROM people, userAccount " +
+					peopleQuery = "SELECT name, phoneNumber, email, address, roleName FROM people, userAccount, roles " +
 												"WHERE people.peopleID = userAccount.peopleID AND userAccount.roleID < 4 AND " +
-												"userAccount.isDeleted = 0 ORDER BY people.name ASC;";
+												"userAccount.roleID = roles.roleID AND userAccount.isDeleted = 0 ORDER BY people.name ASC;";
 				}
 
 				this.connectDatabase();
@@ -717,6 +717,7 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 							bookDetail.add(result.getString("phoneNumber"));
 							bookDetail.add(result.getString("email"));
 							bookDetail.add(result.getString("address"));
+							bookDetail.add(result.getString("roleName"));
 							bookList.add(bookDetail);
 							System.out.println(Arrays.deepToString(bookDetail.toArray()));
 						}
@@ -724,10 +725,10 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						rowCount = bookList.size();
 						System.out.println(Arrays.deepToString(bookList.toArray()));
 
-						resultArray = new Object[rowCount][4];
+						resultArray = new Object[rowCount][5];
 						try{
 							for(int i = 0; i < rowCount; i++){
-								for(int j = 0; j < 4; j++){
+								for(int j = 0; j < 5; j++){
 									resultArray[i][j] = bookList.get(i).get(j);
 								}
 							}

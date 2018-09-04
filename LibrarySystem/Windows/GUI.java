@@ -285,7 +285,7 @@ public void clearLeftPanel(){
 		this.clearLeftPanel();
 
 		String [] index;
-		index= new String[]{"Name", "Phone", "Email", "Address"};
+		index= new String[]{"Name", "Phone", "Email", "Address", "Role"};
 
 		try{
 			Object[][] rawData = Global.database.readUserInfo(mode);
