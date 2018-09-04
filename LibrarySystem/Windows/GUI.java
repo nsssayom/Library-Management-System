@@ -27,6 +27,7 @@ public class GUI extends JFrame implements ActionListener{
 	LeftPanelUserInfoUpdate leftPanelUserInfoUpdate;
 	LeftPanelChangePassword leftPanelChangePassword;
 	LeftPanelAddNewBook leftPanelAddNewBook;
+	LeftPanelAddNewEmployee leftPanelAddEmployee;
 
 	RightPanelReg rightPanelReg;
 	RightPanelUser rightPanelUser;
