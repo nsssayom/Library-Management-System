@@ -16,7 +16,7 @@ import java.awt.*;
 public class RightPanelEmployee extends JPanel{
 
 JButton btnViewMyInfo,btnEditMyInfo,btnViewUserInfo,btnViewEmployeeInfo,btnAddNewEmployee ;
-JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
+JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo, btnChangePassword, btnUpdateEmployeeInfo;
 
 	public RightPanelEmployee(){
 
@@ -25,6 +25,7 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
     setLayout(null);
 
     Font f4= new Font("Cambria",Font.BOLD, 16);
+		Font f1= new Font("Cambria",Font.BOLD, 15);
 
 		btnViewMyInfo = new JButton("View My Account");
 		btnViewMyInfo.setBounds(50, 50, 250, 30);
@@ -127,5 +128,15 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo;
 												Global.gui.updateBook();
 							    }
 							});
+  	btnUpdateEmployeeInfo = new JButton("Update Employee Information");
+		btnUpdateEmployeeInfo.setBounds(50, 500, 250, 30);
+		btnUpdateEmployeeInfo.setFont(f1);
+		add(btnUpdateEmployeeInfo);
+
+		btnChangePassword = new JButton("Change Password");
+	  btnChangePassword.setBounds(50, 550, 250, 30);
+		btnChangePassword.setFont(f4);
+		add(btnChangePassword);
+
   }
 }

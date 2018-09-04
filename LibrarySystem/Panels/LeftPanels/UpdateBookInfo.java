@@ -28,21 +28,21 @@ public class UpdateBookInfo extends LeftPanel implements ActionListener{
       Font f4= new Font("Cambria", Font.BOLD, 17);
 
       bookInfoLabel = new JLabel("Update Book Information");
-      bookInfoLabel.setBounds(140, 150,300, 30);
+      bookInfoLabel.setBounds(140, 160,300, 30);
       bookInfoLabel.setFont(f2);
       add(bookInfoLabel);
 
       bookID = new JLabel("Book ID");
-      bookID.setBounds(150, 210, 150, 30);
+      bookID.setBounds(150, 220, 150, 30);
       bookID.setFont(f4);
       add(bookID);
 
       bookIdTF = new JTextField();
-  		bookIdTF.setBounds(250, 210, 200, 30);
+  		bookIdTF.setBounds(300, 220, 200, 30);
   		add(bookIdTF);
 
       loadBookInfo = new JButton("Load Book Info");
-      loadBookInfo.setBounds(400, 210, 200, 30);
+      loadBookInfo.setBounds(530, 220, 150, 30);
       loadBookInfo.addActionListener(this);
       add(loadBookInfo);
       loadBookInfo.addActionListener(new ActionListener() {
@@ -125,7 +125,7 @@ public class UpdateBookInfo extends LeftPanel implements ActionListener{
   							   });
 
       btnDeleteBooks = new JButton("Delete books");
-  		btnDeleteBooks.setBounds(350, 600, 150, 33);
+  		btnDeleteBooks.setBounds(140, 550, 150, 30);
       btnDeleteBooks.setForeground(Color.RED);
       btnDeleteBooks.setEnabled(false);
   		btnDeleteBooks.addActionListener(this);
