@@ -669,4 +669,58 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 					}
 				}
 
+				public Boolean issueBook(String bookID, String userName){
+					String borrowQuery;
+						borrowQuery = 	"BEGIN;"
+														+ "INSERT INTO borrowInfo (bookID, accountID)"
+														+ " VALUES(?, (SELECT accountID FROM userAccount WHERE userName = ?));"
+														+ "UPDATE books SET availableQuantity = availableQuantity - 1"
+														+ " WHERE bookID = ? AND availableQuantity > 0;"
+														+ " COMMIT;";
+
+					this.connectDatabase();
+					try{
+						this.ps = this.con.prepareStatement(borrowQuery);
+						ps.setString(1, bookID);
+						ps.setString(2, userName);
+						System.out.println(ps);
+						this.runUpdate(ps);
+						return true;
+					}
+					catch(Exception ex){
+						ex.printStackTrace();
+					}
+					finally{
+						this.closeConnection();
+					}
+					return false;
+				}
+
+				public Boolean returnBook(String borrowID){
+					String borrowQuery;
+						borrowQuery = 	"BEGIN;"
+														+ "INSERT INTO returnInfo (borrowID)"
+														+ " VALUES(?);"
+														+ "UPDATE books SET availableQuantity = availableQuantity + 1"
+														+ " WHERE bookID = ? AND availableQuantity < totalQuantity;"
+														+ " COMMIT;";
+
+					this.connectDatabase();
+					try{
+						this.ps = this.con.prepareStatement(borrowQuery);
+						ps.setString(1, bookID);
+						ps.setString(2, userName);
+						System.out.println(ps);
+						this.runUpdate(ps);
+						return true;
+					}
+					catch(Exception ex){
+						ex.printStackTrace();
+					}
+					finally{
+						this.closeConnection();
+					}
+					return false;
+				}
+
 }
