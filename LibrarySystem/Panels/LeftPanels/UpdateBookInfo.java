@@ -24,8 +24,8 @@ public class UpdateBookInfo extends LeftPanel implements ActionListener{
       //setBounds(0, 100 , 900, 800);
       //setLayout(null);
 
-      Font f2 = new Font("Cambria",Font.BOLD, 20);
-      Font f4= new Font("Cambria",Font.BOLD, 17);
+      Font f2 = new Font("Cambria", Font.BOLD, 20);
+      Font f4= new Font("Cambria", Font.BOLD, 17);
 
       bookInfoLabel = new JLabel("Update Book Information");
       bookInfoLabel.setBounds(140, 150,300, 30);

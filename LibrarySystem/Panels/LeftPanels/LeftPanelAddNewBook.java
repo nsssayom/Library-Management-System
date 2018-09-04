@@ -91,6 +91,20 @@ public class LeftPanelAddNewBook extends LeftPanel implements ActionListener{
       btnAdd = new JButton("Add");
       btnAdd.setBounds(150, 530, 100, 33);
       add(btnAdd);
-
+      btnAdd.addActionListener(new ActionListener() {
+  							    @Override
+  							    public void actionPerformed(ActionEvent evt) {
+                      String bookTitle = bookTF.getText();
+                      String authorName = authorNameTF.getText();
+                      String ISBN = isbnTF.getText();
+                      String publicationYear = publicationYearTF.getText();
+                      String shelf = shelfTF.getText();
+                      String quantity = totalQuantityTF.getText();
+  							      if (Global.database.addNewBook(bookTitle, authorName, ISBN,
+                        											publicationYear, shelf, quantity)){
+                      JOptionPane.showMessageDialog(null, "Book added successfully", "Success", JOptionPane.WARNING_MESSAGE);
+                      }
+  							    }
+  							});
     }
   }

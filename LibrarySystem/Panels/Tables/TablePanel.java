@@ -43,7 +43,7 @@ public class TablePanel extends LeftPanel implements ActionListener{
       JOptionPane.showMessageDialog(null, "Table creation failed.", "Error: ", JOptionPane.WARNING_MESSAGE);
     }
     try{
-      table.getColumn("ID").setMaxWidth(20);
+      table.getColumn("ID").setMaxWidth(30);
       table.getColumn("Book Title").setMinWidth(300);
       table.getColumn("Shelf").setMaxWidth(50);
       table.getColumn("Quantity").setMaxWidth(60);
