@@ -153,11 +153,10 @@ public void clearLeftPanel(){
 	public void showBorrowedBooks(String accountID){
 		this.clearLeftPanel();
 		String [] index;
-		index= new String[]{"ID", "Book Title", "Author Name",
-											"publication Year", "Shelf", "Quantity"};
+		index= new String[]{"ID", "Borrow ID", "Book Title", "Author Name","Date", "isReturned"};
 
 		try{
-			Object[][] rawData = Global.database.showBorrowedBooks(accountID);
+			Object[][] rawData = Global.database.readBorrowedBooks();
 			tablePanel = new TablePanel(index, rawData);
 			mainPanel.add(tablePanel);
 		}

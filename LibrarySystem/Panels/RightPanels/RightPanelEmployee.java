@@ -144,6 +144,12 @@ JButton btnAddNewBook, btnIssueBook, btnReturnBook, btnUpdateBookInfo, btnChange
 	  btnChangePassword.setBounds(50, 550, 250, 30);
 		btnChangePassword.setFont(f4);
 		add(btnChangePassword);
+		btnChangePassword.addActionListener(new ActionListener() {
+							    @Override
+							    public void actionPerformed(ActionEvent evt) {
+												Global.gui.changePassword();
+							    }
+							});
 
   }
 }

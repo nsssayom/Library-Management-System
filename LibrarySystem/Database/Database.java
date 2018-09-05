@@ -781,9 +781,16 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 							while(result.next()){
 								List<String> bookDetail = new ArrayList<String>();
 								bookDetail.add(result.getString("bookID"));
+								bookDetail.add(result.getString("borrowID"));
 								bookDetail.add(result.getString("bookTitle"));
 								bookDetail.add(result.getString("authorName"));
 								bookDetail.add(result.getString("borrowDate"));
+								if (result.getString("isReturned").equals("0")){
+									bookDetail.add("No");
+								}
+								else if (result.getString("isReturned").equals("1")){
+									bookDetail.add("Yes");
+								}
 								bookList.add(bookDetail);
 								System.out.println(Arrays.deepToString(bookDetail.toArray()));
 							}
@@ -791,14 +798,14 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 							rowCount = bookList.size();
 							System.out.println(Arrays.deepToString(bookList.toArray()));
 
-							resultArray = new Object[rowCount][4];
+							resultArray = new Object[rowCount][6];
 							try{
 								for(int i = 0; i < rowCount; i++){
-									for(int j = 0; j < 4; j++){
+									for(int j = 0; j < 6; j++){
 										resultArray[i][j] = bookList.get(i).get(j);
 									}
 								}
-									//bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
+									bookList.forEach((book)->book.forEach((field)->System.out.println(field)));
 							}
 							catch(Exception ex){
 									System.out.println("Error exporting result to an array");
@@ -848,8 +855,9 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						borrowQuery = 	"BEGIN;"
 														+ "INSERT INTO returnInfo (borrowID)"
 														+ " VALUES(?);"
-														+ "UPDATE books SET availableQuantity = availableQuantity + 1"
-														+ " WHERE bookID = (SELECT bookID FROM borrowInfo WHERE borrowID = ?) AND availableQuantity < totalQuantity;"
+														+ "UPDATE borrowInfo SET isReturned = 1 WHERE borrowID = ?;"
+														+ "UPDATE books SET availableQuantity = availableQuantity + 1 "
+														+ "WHERE bookID = (SELECT bookID FROM borrowInfo WHERE borrowID = ?);"
 														+ " COMMIT;";
 
 					this.connectDatabase();
@@ -857,10 +865,12 @@ public Boolean addNewBook(String bookTitle, String authorName, String ISBN,
 						this.ps = this.con.prepareStatement(borrowQuery);
 						ps.setString(1, borrowID);
 						ps.setString(2, borrowID);
+						ps.setString(3, borrowID);
 						System.out.println(ps);
 						this.runUpdate(ps);
 					}
 					catch(Exception ex){
+						ex.printStackTrace();
 						throw ex;
 					}
 					finally{

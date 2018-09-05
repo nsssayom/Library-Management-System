@@ -12,13 +12,14 @@ public class Global{
   public static int ROLEID;
   public static int ACCOUNTID;
   public static String PEOPLEID;
-  
+
   public static String NAME;
   public static String EMAIL;
   public static String ADDRESS;
   public static String PHONE;
 
-  public static Database database = new Database("54.37.227.144", "my_library", "Library009", "library_database");
+  //public static Database database = new Database("54.37.227.144", "my_library", "Library009", "library_database");
+  public static Database database = new Database("localhost", "root", "", "library_database");
   public static GUI gui;
 
   public static String getRole(){
